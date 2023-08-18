@@ -1,0 +1,59 @@
+.navigation {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navigation ul {
+  display: flex;
+  list-style: none;
+}
+
+.navigation ul li {
+  margin: 0 10px;
+  position: relative;
+  list-style: none;
+  width: 90px;
+  height: 80px;
+  z-index: 2;
+}
+
+.navigation ul li a {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+  font-weight: 500;
+  text-decoration: none;
+  color: #f9f9f9;
+  font-family: "Michroma", sans-serif;
+  font-size: 0.6rem;
+}
+
+.navigation ul li a .icon {
+  position: relative;
+  display: block;
+  line-height: 75px;
+  font-size: 1.5em;
+  text-align: center;
+  transition: 0.5s;
+  color: #000000;
+}
+
+.navigation ul li:hover a .icon {
+  transform: translateY(3px);
+}
+
+@media (max-width: 768px) {
+  .navigation ul li {
+    width: 60px; /* Cambia el ancho según tus necesidades */
+  }
+  .navigation ul li a .text {
+    font-size: 0.5rem; /* Reduzca el tamaño de fuente si es necesario */
+  }
+}
+

@@ -27,7 +27,9 @@
         </div>
 
         <div class="container mt-4">
+            <h1>Últimas publicaciones</h1>
             <div class="row row-cols-1 row-cols-md-2">
+                
                 @foreach ($latestAds as $ad)
                     <div class="col mb-3">
                         <div class="card ad-card">

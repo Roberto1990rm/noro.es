@@ -39,9 +39,26 @@ class AdController extends Controller
 
     
 
-    public function index()
+    public function index(Request $request)
     {
-        $ads = Ad::all(); // Obtén todos los anuncios
+        $category = $request->input('category'); // Obtén la categoría seleccionada del formulario
+    
+        $query = Ad::query();
+    
+        if ($category) {
+            $query->where('category', $category);
+        }
+    
+        $ads = $query->orderBy('published_at', 'desc')->get();
+    
         return view('ads.index', compact('ads'));
     }
+    
+    public function show($id)
+    {
+        $ad = Ad::findOrFail($id); // Buscar el anuncio por su ID
+        return view('ads.show', compact('ad'));
+    }
+    
+ 
 }

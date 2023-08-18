@@ -26,6 +26,8 @@ Route::get('/ads/create', [AdController::class, 'create'])->name('ads.create');
 Route::post('/ads', [AdController::class, 'store'])->name('ads.store');
 Route::get('/ads', [AdController::class, 'index'])->name('ads.index');
 
+
+
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('welcome.index');

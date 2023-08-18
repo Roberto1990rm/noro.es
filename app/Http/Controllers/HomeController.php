@@ -1,29 +1,28 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 use App\Models\Ad;
-use App\Http\Controllers\AdController;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
-        return view('home');
+        $latestAds = Ad::orderBy('published_at', 'desc')
+            ->take(4) // Obtener solo los últimos 4 anuncios
+            ->get();
+    
+        return view('welcome', compact('latestAds'));
     }
+    
+    
+
+
+   
 }

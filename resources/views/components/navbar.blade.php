@@ -12,8 +12,8 @@
             </a>
           </li>
           <li class="list">
-            <a href="/" style="color: black;">
-              <span class="text">Catalogue</span>
+            <a href="/ads" style="color: black;">
+              <span class="text">Noticias</span>
               <span class="icon">
                 <img
                   src="https://res.cloudinary.com/dhvkfxxvo/image/upload/v1687763206/Catalogue_cpu1ic.svg"
@@ -24,8 +24,8 @@
           </li>
         
           <li class="list">
-            <a href="/" style="color: black;">
-              <span class="text">Favoris</span>
+            <a href="/ads/create" style="color: black;">
+              <span class="text">Publicar</span>
               <span class="icon">
                 <img src="https://res.cloudinary.com/dhvkfxxvo/image/upload/v1687763206/Favoris_gw2ufa.svg" alt="icone favoris" />
               </span>
@@ -39,14 +39,7 @@
               </span>
             </a>
           </li>
-          <li class="list">
-            <a href="/" style="color: black;">
-              <span class="text">Panier</span>
-              <span class="icon">
-                <img src="https://res.cloudinary.com/dhvkfxxvo/image/upload/v1687763206/Panier_rovwtp.svg" alt="icone Panier" />
-              </span>
-            </a>
-          </li>
+       
         </ul>
         <ul class="navbar-nav ms-auto">
           <!-- Authentication Links -->

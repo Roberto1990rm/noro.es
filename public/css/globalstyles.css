@@ -9,6 +9,30 @@
   }
   
 
-  
+/* Estilos para tamaño de pantalla grande */
+@media (min-width: 992px) {
+  .ad-card {
+      width: 100%; /* Ancho del 100% para ocupar toda la fila */
+  }
+
+}
+
+/* Estilos para tamaño de pantalla mediano y pequeño */
+@media (max-width: 991px) {
+ 
+
+  .row-cols-2 {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-right: -0.5rem;
+    margin-left: -0.5rem;
+  }
+  .ad-card {
+    width: 100%; /* Ancho del 50% para que aparezcan dos por fila */
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+  }
+}
+
 
  

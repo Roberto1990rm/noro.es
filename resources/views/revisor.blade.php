@@ -10,6 +10,7 @@
                         <th>Content</th>
                         <th>Image</th>
                         <th>Published</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,6 +26,7 @@
                                 No Image
                             @endif
                         </td>
+                        <td>{{ $ad->created_at }}</td>
                         <td>
                             <form action="{{ route('revisor.update-visibility', ['id' => $ad->id]) }}" method="post">
                                 @csrf
@@ -33,6 +35,11 @@
                                     <option value="1" {{ $ad->is_visible === 1 ? 'selected' : '' }}>Visible</option>
                                 </select>
                                 <button type="submit" class="btn btn-primary">Save</button>
+                            </form>
+                            <form action="{{ route('ads.destroy', ['id' => $ad->id]) }}" method="post">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
                         </td>
                     </tr>

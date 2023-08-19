@@ -30,6 +30,7 @@ Route::get('/ads/create', [AdController::class, 'create'])->name('ads.create');
 Route::post('/ads', [AdController::class, 'store'])->name('ads.store');
 Route::get('/ads', [AdController::class, 'index'])->name('ads.index');
 Route::get('/ads/{id}', [AdController::class, 'show'])->name('ads.show');
+Route::delete('/ads/{id}', [AdController::class, 'destroy'])->name('ads.destroy');
 
 // routes/web.php
 

@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header">{{ __('Professional News') }}</div>
 
-                    <div class="card-body text-center"> <!-- Agrega la clase text-center aquí -->
+                    <div class="card-body text-center">
                         <form action="{{ route('ads.index') }}" method="GET" class="mb-3">
                             <label for="category">Filter by Category:</label>
                             <select name="category" id="category" class="form-select">
@@ -20,7 +20,6 @@
                                 <option value="entretenimiento">Entretenimiento</option>
                                 <option value="ciencia">Ciencia</option>
                                 <option value="motor">Motor</option>
-                                <!-- Agrega más opciones según tus categorías -->
                             </select>
                             <button type="submit" class="btn btn-primary mt-1">Apply Filter</button>
                         </form>
@@ -31,13 +30,17 @@
                                     <div class="card ad-card">
                                         <div class="card-body">
                                             <h4 class="ad-title">{{ $ad->title }}</h4>
+                                            <p class="ad-subtitle">{{ $ad->subtitle }}</p>
+                                           
                                             @if ($ad->image)
                                                 <img src="{{ $ad->getImageUrl() }}" alt="{{ $ad->title }}" class="img-fluid ad-image" style="height: 150px;">
                                             @endif
-                                            <p class="ad-content">{{ $ad->content }}</p>
-                                            <p>Category: {{ ucfirst($ad->category) }}</p>
-                                            <p>Published at: {{ $ad->published_at }}</p>
-                                            <a href="{{ route('ads.show', ['id' => $ad->id]) }}" class="btn btn-primary">View Details</a>
+                                            <p class="ad-content">{{ Str::limit($ad->content, 100) }} <a href="{{ route('ads.show', ['id' => $ad->id]) }}">Ver más</a></p>
+                                            <p class="ad-category">Category: {{ ucfirst($ad->category) }}</p>
+                                            <p>Published at: {{ $ad->created_at }}</p>
+                                            @if ($ad->user)
+                                                <p>Created by: {{ $ad->user->name }}</p>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

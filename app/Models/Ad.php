@@ -31,4 +31,16 @@ class Ad extends Model
         }
         return null;
     }
+
+    public function users()
+{
+    return $this->belongsToMany(User::class)->withTimestamps();
+}
+
+
+public function user()
+{
+    return $this->belongsTo(User::class);
+}
+
 }

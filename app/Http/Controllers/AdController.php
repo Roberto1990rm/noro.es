@@ -22,7 +22,6 @@ class AdController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
     
-        // Agrega 'is_visible' con valor 0 al arreglo de datos validados
         $validatedData['is_visible'] = 0;
     
         $ad = new Ad($validatedData);
@@ -32,10 +31,14 @@ class AdController extends Controller
             $ad->image = $imagePath;
         }
     
+        // Asociar el ID del usuario actual al anuncio
+        $ad->user_id = auth()->user()->id;
+    
         $ad->save();
     
         return redirect()->route('ads.create')->with('success', 'Ad created successfully.');
     }
+    
     
 
 
@@ -72,5 +75,15 @@ class AdController extends Controller
     $count = Ad::where('is_visible', 0)->count();
     return $count;
 }
+
+
+public function destroy($id)
+{
+    $ad = Ad::findOrFail($id); // Buscar el anuncio por su ID
+    $ad->delete();
+
+    return redirect()->route('ads.index')->with('success', 'Ad deleted successfully.');
+}
+
  
 }

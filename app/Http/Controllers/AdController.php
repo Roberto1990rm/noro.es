@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Ad; // Asegúrate de importar el modelo correcto
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 class AdController extends Controller
 {
     // ...
@@ -76,6 +77,47 @@ class AdController extends Controller
     return $count;
 }
 
+public function edit($id)
+{
+    $ad = Ad::findOrFail($id);
+
+    if ($ad->user_id !== Auth::user()->id) {
+        return redirect()->route('ads.index')->with('error', 'You do not have permission to edit this ad.');
+    }
+
+    return view('ads.edit', compact('ad'));
+}
+
+
+public function update(Request $request, $id)
+{
+    $ad = Ad::findOrFail($id);
+
+    // Verifica si el usuario actual es el creador del anuncio
+    if ($ad->user_id !== Auth::user()->id) {
+        return redirect()->route('ads.index')->with('error', 'You do not have permission to edit this ad.');
+    }
+
+    // Valida los datos del formulario de edición
+    $validatedData = $request->validate([
+        'title' => 'required|string|max:255',
+        'subtitle' => 'nullable|string|max:255',
+        'content' => 'required|string',
+        'category' => 'required|in:nacional,internacional,politica,economia,tecnologia,moda,cultura,entretenimiento,ciencia,motor',
+    ]);
+
+    // Actualiza los campos del anuncio con los datos validados
+    $ad->update($validatedData);
+
+    // Establece el valor de is_visible en 0
+    $ad->is_visible = 0;
+    $ad->save();
+
+    return redirect()->route('ads.index')->with('success', 'Ad updated successfully.');
+}
+
+
+
 
 public function destroy($id)
 {
@@ -84,6 +126,8 @@ public function destroy($id)
 
     return redirect()->route('ads.index')->with('success', 'Ad deleted successfully.');
 }
+
+
 
  
 }

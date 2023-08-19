@@ -28,19 +28,20 @@
 
         <div class="container mt-4">
             <h1 class="text-center">Últimas publicaciones</h1>
-            <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center"> <!-- Agregamos la clase justify-content-center para centrar las tarjetas -->
+            <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
                 
                 @foreach ($latestAds as $ad)
                     <div class="col mb-3">
                         <div class="card ad-card">
-                            <div class="card-body text-center"> <!-- Centramos el contenido en la card -->
+                            <div class="card-body text-center">
                                 <h4 class="ad-title">{{ $ad->title }}</h4>
+                                <h5 class="ad-subtitle">{{ $ad->subtitle }}</h5>
                                 @if ($ad->image)
-                                    <img src="{{ $ad->getImageUrl() }}" alt="{{ $ad->title }}" class="img-fluid ad-image" style="max-height: 200px;"> <!-- Ajustamos el tamaño máximo de la imagen -->
+                                    <img src="{{ $ad->getImageUrl() }}" alt="{{ $ad->title }}" class="img-fluid ad-image" style="max-height: 200px;">
                                 @endif
-                                <p class="ad-content">{{ $ad->content }}</p>
-                                <p>Category: {{ ucfirst($ad->category) }}</p>
-                                <p>Published at: {{ $ad->published_at }}</p>
+                                <p class="ad-content">{{ substr($ad->content, 0, 100) }} ... <a href="{{ route('ads.show', ['id' => $ad->id]) }}">Ver más</a></p>
+                                <p>Category: <a href="{{ route('ads.index', ['category' => $ad->category]) }}">{{ ucfirst($ad->category) }}</a></p>
+                                <p>Created at: {{ $ad->created_at }}</p>
                             </div>
                         </div>
                     </div>

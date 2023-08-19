@@ -41,6 +41,9 @@
                                             @if ($ad->user)
                                                 <p>Created by: {{ $ad->user->name }}</p>
                                             @endif
+                                            @if (Auth::check() && Auth::user()->id === $ad->user_id)
+                                            <a href="{{ route('ads.edit', ['id' => $ad->id]) }}" class="btn btn-primary">Edit Ad</a>
+                                        @endif
                                         </div>
                                     </div>
                                 </div>

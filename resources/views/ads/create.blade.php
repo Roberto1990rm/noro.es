@@ -70,11 +70,15 @@
                                     </span>
                                 @enderror
                             </div>
-
+@auth
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Create News') }}
                                 </button>
+                                @endauth
+                                @guest
+                                <h1>Tienes que estar registrado para poder publicar</h1>
+                                @endguest
                             </div>
                         </form>
                     </div>

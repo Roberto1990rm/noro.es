@@ -31,7 +31,25 @@
               </span>
             </a>
           </li>
-         
+          <li class="list">
+            @auth
+                @if (Auth::user()->is_revisor)
+                    <a class="nav-link" href="{{ route('revisor.index') }}">
+                        <span class="icon">
+                            <i class="bi bi-person"></i>
+                        </span>
+                        <span class="text">Revisor Panel</span>
+                        <!-- Mostrar contador si hay anuncios no visibles -->
+                        @php
+                            $notVisibleAdsCount = app('App\Http\Controllers\AdController')->countNotVisibleAds();
+                        @endphp
+                        @if ($notVisibleAdsCount > 0)
+                            <span class="badge bg-danger">{{ $notVisibleAdsCount }}</span>
+                        @endif
+                    </a>
+                @endif
+            @endauth
+        </li>
           <li class="list">
             @auth
                 @if(Auth::user()->is_admin)
@@ -43,18 +61,7 @@
                     </a>
                 @endif
             @endauth
-            <li class="list">
-              @auth
-                  @if (Auth::user()->is_revisor)
-                      <a href="{{ route('revisor.index') }}" style="color: black;">
-                          <span class="icon">
-                              <i class="bi bi-pencil-square"></i> <!-- Icono para el panel de revisor -->
-                          </span>
-                          <span class="text">Revisor Panel</span>
-                      </a>
-                  @endif
-              @endauth
-          </li>
+          
         </li>
      
         </ul>

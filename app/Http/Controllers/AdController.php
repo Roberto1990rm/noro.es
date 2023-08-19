@@ -66,5 +66,11 @@ class AdController extends Controller
         return view('ads.show', compact('ad'));
     }
     
+
+    public function countNotVisibleAds()
+{
+    $count = Ad::where('is_visible', 0)->count();
+    return $count;
+}
  
 }

@@ -87,3 +87,12 @@ body {
   max-width: 100%;
   overflow: hidden;
 }
+
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 767px) {
+  .video-row {
+      width: 100%;
+      margin-right: 0; /* Elimina el margen derecho para ocupar todo el ancho */
+  }
+}

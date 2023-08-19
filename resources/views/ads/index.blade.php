@@ -9,11 +9,18 @@
                         <form action="{{ route('ads.index') }}" method="GET" class="mb-3">
                             <label for="category" class="form-label">Filter by Category:</label>
                             <div class="input-group">
-                                <select name="category" id="category" class="form-select">
-                                    <option value="">All</option>
-                                    <option value="nacional">Nacional</option>
-                                    <option value="internacional">Internacional</option>
-                                    <!-- Rest of the options -->
+                                <select id="category" class="form-control @error('category') is-invalid @enderror" name="category" required>
+                                    <option value="" disabled selected>{{ __('Select a category') }}</option>
+                                    <option value="nacional">{{ __('Nacional') }}</option>
+                                    <option value="internacional">{{ __('Internacional') }}</option>
+                                    <option value="politica">{{ __('Politica') }}</option>
+                                    <option value="economia">{{ __('Economia') }}</option>
+                                    <option value="tecnologia">{{ __('Tecnologia') }}</option>
+                                    <option value="moda">{{ __('Moda') }}</option>
+                                    <option value="cultura">{{ __('Cultura') }}</option>
+                                    <option value="entretenimiento">{{ __('Entretenimiento') }}</option>
+                                    <option value="ciencia">{{ __('Ciencia') }}</option>
+                                    <option value="motor">{{ __('Motor') }}</option>
                                 </select>
                                 <button type="submit" class="btn btn-primary">Apply Filter</button>
                             </div>
@@ -33,9 +40,31 @@
 
                                             <!-- Mostrar el video si hay una URL de video -->
                                             @if ($ad->video_url)
-                                                <div class="embed-responsive embed-responsive-16by9 mb-3">
+                                            <div class="embed-responsive embed-responsive-16by9 mb-3">
+                                                <style>
+                                                    .responsive-video {
+                                                        position: relative;
+                                                        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+                                                        height: 0;
+                                                        overflow: hidden;
+                                                    }
+                                                    
+                                                    .responsive-video iframe,
+                                                    .responsive-video object,
+                                                    .responsive-video embed {
+                                                        position: absolute;
+                                                        top: 0;
+                                                        left: 0;
+                                                        width: 100%;
+                                                        height: 100%;
+                                                    }
+                                                </style>
+                                                <div class="responsive-video">
                                                     {!! $ad->video_url !!} <!-- Pega aquí el código de inserción que copiaste -->
                                                 </div>
+                                            </div>
+                                            
+                                            
                                             @else
                                                 <!-- Mostrar la imagen si no hay una URL de video -->
                                                 @if ($ad->image)

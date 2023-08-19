@@ -55,23 +55,19 @@ class AdController extends Controller
     
 
     public function index(Request $request)
-{
-    $category = $request->input('category'); // Obtén la categoría seleccionada del formulario
-
-    $query = Ad::query();
-
-    if ($category) {
-        $query->where('category', $category);
+    {
+        $category = $request->input('category'); // Obtener la categoría del filtro
+        $query = Ad::query();
+    
+        if ($category) {
+            $query->where('category', $category);
+        }
+    
+        $ads = $query->orderBy('created_at', 'desc')->get();
+    
+        return view('ads.index', compact('ads'));
     }
-
-    // Agregar condición para mostrar solo los anuncios con is_visible = 1
-    $query->where('is_visible', 1);
-
-    $ads = $query->orderBy('published_at', 'desc')->get();
-
-    return view('ads.index', compact('ads'));
-}
-
+    
     
     public function show($id)
     {

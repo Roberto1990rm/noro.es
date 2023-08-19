@@ -12,7 +12,6 @@
                     <li><a href="{{ route('ads.index', ['category' => 'internacional']) }}">Internacional</a></li>
                     <li><a href="{{ route('ads.index', ['category' => 'politica']) }}">Politica</a></li>
                     <li><a href="{{ route('ads.index', ['category' => 'economia']) }}">Economia</a></li>
-                    <!-- Agrega más categorías aquí -->
                 </ul>
             </div>
             <div class="col-md-4">

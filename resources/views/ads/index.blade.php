@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header">{{ __('Professional News') }}</div>
 
-                    <div class="card-body">
+                    <div class="card-body text-center"> <!-- Agrega la clase text-center aquí -->
                         <form action="{{ route('ads.index') }}" method="GET" class="mb-3">
                             <label for="category">Filter by Category:</label>
                             <select name="category" id="category" class="form-select">
@@ -22,7 +22,7 @@
                                 <option value="motor">Motor</option>
                                 <!-- Agrega más opciones según tus categorías -->
                             </select>
-                            <button type="submit" class="btn btn-primary">Apply Filter</button>
+                            <button type="submit" class="btn btn-primary mt-1">Apply Filter</button>
                         </form>
 
                         <div class="row row-cols-2">
@@ -32,7 +32,7 @@
                                         <div class="card-body">
                                             <h4 class="ad-title">{{ $ad->title }}</h4>
                                             @if ($ad->image)
-                                                <img src="{{ $ad->getImageUrl() }}" alt="{{ $ad->title }}" class="img-fluid ad-image">
+                                                <img src="{{ $ad->getImageUrl() }}" alt="{{ $ad->title }}" class="img-fluid ad-image" style="height: 150px;">
                                             @endif
                                             <p class="ad-content">{{ $ad->content }}</p>
                                             <p>Category: {{ ucfirst($ad->category) }}</p>

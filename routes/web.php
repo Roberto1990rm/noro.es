@@ -2,7 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\RevisorController;
+
 use App\Models\Ad;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,6 +30,22 @@ Route::get('/ads/create', [AdController::class, 'create'])->name('ads.create');
 Route::post('/ads', [AdController::class, 'store'])->name('ads.store');
 Route::get('/ads', [AdController::class, 'index'])->name('ads.index');
 Route::get('/ads/{id}', [AdController::class, 'show'])->name('ads.show');
+
+// routes/web.php
+
+
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+    Route::get('users', [AdminController::class, 'index'])->name('admin.users.index');
+    Route::post('users/{user}/assign-revisor', [AdminController::class, 'assignRevisor'])->name('admin.users.assign_revisor');
+    Route::post('users/{user}/remove-revisor', [AdminController::class, 'removeRevisor'])->name('admin.users.remove_revisor');
+
+});
+
+Route::middleware(['auth', 'revisor'])->prefix('revisor')->group(function () {
+    Route::get('revisor', [RevisorController::class, 'index'])->name('revisor.index');
+    Route::post('/revisor/update-visibility/{id}', [RevisorController::class, 'updateVisibility'])->name('revisor.update-visibility');
+
+});
 
 
 

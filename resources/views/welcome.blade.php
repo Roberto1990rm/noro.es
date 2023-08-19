@@ -27,16 +27,16 @@
         </div>
 
         <div class="container mt-4">
-            <h1>Últimas publicaciones</h1>
-            <div class="row row-cols-1 row-cols-md-2">
+            <h1 class="text-center">Últimas publicaciones</h1>
+            <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center"> <!-- Agregamos la clase justify-content-center para centrar las tarjetas -->
                 
                 @foreach ($latestAds as $ad)
                     <div class="col mb-3">
                         <div class="card ad-card">
-                            <div class="card-body">
+                            <div class="card-body text-center"> <!-- Centramos el contenido en la card -->
                                 <h4 class="ad-title">{{ $ad->title }}</h4>
                                 @if ($ad->image)
-                                    <img src="{{ $ad->getImageUrl() }}" alt="{{ $ad->title }}" class="img-fluid ad-image">
+                                    <img src="{{ $ad->getImageUrl() }}" alt="{{ $ad->title }}" class="img-fluid ad-image" style="max-height: 200px;"> <!-- Ajustamos el tamaño máximo de la imagen -->
                                 @endif
                                 <p class="ad-content">{{ $ad->content }}</p>
                                 <p>Category: {{ ucfirst($ad->category) }}</p>
@@ -48,7 +48,7 @@
             </div>
 
             @if ($latestAds->isEmpty())
-                <p>No latest ads available.</p>
+                <p class="text-center">No latest ads available.</p>
             @endif
         </div>
     </div>

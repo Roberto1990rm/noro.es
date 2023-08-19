@@ -31,15 +31,32 @@
               </span>
             </a>
           </li>
+         
           <li class="list">
-            <a href="/" style="color: black;">
-              <span class="text">Profil</span>
-              <span class="icon">
-                <img src="https://res.cloudinary.com/dhvkfxxvo/image/upload/v1687763206/Profil_bwgkos.svg" alt="icone Profil" />
-              </span>
-            </a>
+            @auth
+                @if(Auth::user()->is_admin)
+                    <a href="{{ route('admin.users.index') }}" style="color: black;">
+                        <span class="icon">
+                            <i class="bi bi-gear"></i> <!-- Icono de engranaje para el panel de administrador -->
+                        </span>
+                        <span class="text">Admin Panel</span>
+                    </a>
+                @endif
+            @endauth
+            <li class="list">
+              @auth
+                  @if (Auth::user()->is_revisor)
+                      <a href="{{ route('revisor.index') }}" style="color: black;">
+                          <span class="icon">
+                              <i class="bi bi-pencil-square"></i> <!-- Icono para el panel de revisor -->
+                          </span>
+                          <span class="text">Revisor Panel</span>
+                      </a>
+                  @endif
+              @endauth
           </li>
-       
+        </li>
+     
         </ul>
         <ul class="navbar-nav ms-auto">
           <!-- Authentication Links -->

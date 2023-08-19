@@ -19,6 +19,7 @@ class Ad extends Model
         'category',
         'image',
         'published_at',
+        'is_visible',
     ];
 
     protected $dates = ['published_at'];

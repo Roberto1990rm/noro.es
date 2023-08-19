@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use App\Models\Ad; // Asegúrate de importar el modelo correcto
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\AdController;
 class AdController extends Controller
 {
     // ...
@@ -13,7 +12,6 @@ class AdController extends Controller
     {
         return view('ads.create');
     }
-
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -23,36 +21,44 @@ class AdController extends Controller
             'category' => 'required|in:nacional,internacional,politica,economia,tecnologia,moda,cultura,entretenimiento,ciencia,motor',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-
+    
+        // Agrega 'is_visible' con valor 0 al arreglo de datos validados
+        $validatedData['is_visible'] = 0;
+    
         $ad = new Ad($validatedData);
-
+    
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('ad_images', 'public');
             $ad->image = $imagePath;
         }
-
+    
         $ad->save();
-
+    
         return redirect()->route('ads.create')->with('success', 'Ad created successfully.');
     }
+    
 
 
     
 
     public function index(Request $request)
-    {
-        $category = $request->input('category'); // Obtén la categoría seleccionada del formulario
-    
-        $query = Ad::query();
-    
-        if ($category) {
-            $query->where('category', $category);
-        }
-    
-        $ads = $query->orderBy('published_at', 'desc')->get();
-    
-        return view('ads.index', compact('ads'));
+{
+    $category = $request->input('category'); // Obtén la categoría seleccionada del formulario
+
+    $query = Ad::query();
+
+    if ($category) {
+        $query->where('category', $category);
     }
+
+    // Agregar condición para mostrar solo los anuncios con is_visible = 1
+    $query->where('is_visible', 1);
+
+    $ads = $query->orderBy('published_at', 'desc')->get();
+
+    return view('ads.index', compact('ads'));
+}
+
     
     public function show($id)
     {

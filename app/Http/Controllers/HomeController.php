@@ -14,12 +14,14 @@ class HomeController extends Controller
 
     public function index()
     {
-        $latestAds = Ad::orderBy('published_at', 'desc')
-            ->take(4) // Obtener solo los últimos 4 anuncios
+        $latestAds = Ad::where('is_visible', 1)
+            ->orderBy('published_at', 'desc')
+            ->take(4) // Obtener solo los últimos 4 anuncios visibles
             ->get();
     
         return view('welcome', compact('latestAds'));
     }
+    
     
     
 

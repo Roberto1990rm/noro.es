@@ -18,7 +18,8 @@ return new class extends Migration
             $table->text('content'); // Contenido de la noticia
             $table->string('image')->nullable(); // Ruta de la imagen relacionada (opcional)
             $table->enum('category', ['nacional', 'internacional', 'politica', 'economia', 'tecnologia', 'moda', 'cultura', 'entretenimiento', 'ciencia', 'motor']); // Categoría de la noticia
-            $table->timestamp('published_at')->nullable(); // Fecha de publicación (opcional)
+            $table->boolean('published_at')->default(0);
+
             $table->timestamps(); // Fecha de creación y actualización
         });
     }

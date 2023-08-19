@@ -54,13 +54,13 @@
                                     <option value="ciencia">{{ __('Ciencia') }}</option>
                                     <option value="motor">{{ __('Motor') }}</option>
                                 </select>
+                                
                                 @error('category')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
-
                             <div class="form-group">
                                 <label for="image">{{ __('Image') }}</label>
                                 <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image">
@@ -70,14 +70,25 @@
                                     </span>
                                 @enderror
                             </div>
-@auth
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Create News') }}
-                                </button>
+                                <label for="video_url">{{ __('YouTube Video iFrame') }}</label>
+                                <textarea id="video_url" class="form-control @error('video_url') is-invalid @enderror" name="video_url" rows="4">{{ old('video_url') }}</textarea>
+                                @error('video_url')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            
+                            
+                            <div class="form-group">
+                                @auth
+                                    <button type="submit" class="btn btn-primary">
+                                        {{ __('Create News') }}
+                                    </button>
                                 @endauth
                                 @guest
-                                <h1>Tienes que estar registrado para poder publicar</h1>
+                                    <h1>{{ __('You must be registered to publish') }}</h1>
                                 @endguest
                             </div>
                         </form>

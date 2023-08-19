@@ -4,9 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Http\Controllers\AdController;
-
-
 
 class Ad extends Model
 {
@@ -18,9 +15,11 @@ class Ad extends Model
         'content',
         'category',
         'image',
+        'user_id',
         'published_at',
         'is_visible',
         'likes_count',
+        'video_url',
     ];
 
     protected $dates = ['published_at'];
@@ -34,26 +33,27 @@ class Ad extends Model
     }
 
     public function users()
-{
-    return $this->belongsToMany(User::class)->withTimestamps();
-}
+    {
+        return $this->belongsToMany(User::class)->withTimestamps();
+    }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
-public function user()
-{
-    return $this->belongsTo(User::class);
-}
+    public function isLikedByUser($userId)
+    {
+        return $this->likes()->where('user_id', $userId)->exists();
+    }
 
-public function isLikedByUser($userId)
-{
-    return $this->likes()->where('user_id', $userId)->exists();
-}
+    public function likes()
+    {
+        return $this->belongsToMany(User::class, 'likes', 'ad_id', 'user_id')->withTimestamps();
+    }
 
-
-
-
-public function likes()
-{
-    return $this->belongsToMany(User::class, 'likes', 'ad_id', 'user_id')->withTimestamps();
-}
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

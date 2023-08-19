@@ -13,14 +13,7 @@
                                     <option value="">All</option>
                                     <option value="nacional">Nacional</option>
                                     <option value="internacional">Internacional</option>
-                                    <option value="politica">Politica</option>
-                                    <option value="economia">Economia</option>
-                                    <option value="tecnologia">Tecnologia</option>
-                                    <option value="moda">Moda</option>
-                                    <option value="cultura">Cultura</option>
-                                    <option value="entretenimiento">Entretenimiento</option>
-                                    <option value="ciencia">Ciencia</option>
-                                    <option value="motor">Motor</option>
+                                    <!-- Rest of the options -->
                                 </select>
                                 <button type="submit" class="btn btn-primary">Apply Filter</button>
                             </div>
@@ -37,15 +30,25 @@
                                         <div class="card-body">
                                             <h4 class="ad-title">{{ $ad->title }}</h4>
                                             <p class="ad-subtitle">{{ $ad->subtitle }}</p>
-                                            @if ($ad->image)
-                                                <img src="{{ $ad->getImageUrl() }}" alt="{{ $ad->title }}" class="img-fluid ad-image" style="max-height: 150px;">
+
+                                            <!-- Mostrar el video si hay una URL de video -->
+                                            @if ($ad->video_url)
+                                                <div class="embed-responsive embed-responsive-16by9 mb-3">
+                                                    {!! $ad->video_url !!} <!-- Pega aquí el código de inserción que copiaste -->
+                                                </div>
+                                            @else
+                                                <!-- Mostrar la imagen si no hay una URL de video -->
+                                                @if ($ad->image)
+                                                    <div class="text-center mb-3">
+                                                        <img src="{{ $ad->getImageUrl() }}" alt="{{ $ad->title }}" class="img-fluid ad-image" style="max-height: 150px;">
+                                                    </div>
+                                                @endif
                                             @endif
-                                            <p class="ad-content">{{ Str::limit($ad->content, 100) }} <a href="{{ route('ads.show', ['id' => $ad->id]) }}" class="text-primary">Read more</a></p>
+
+                                            <p class="ad-content">{{ Str::limit($ad->content, 30) }} <a href="{{ route('ads.show', ['id' => $ad->id]) }}" class="text-primary">Read more</a></p>
                                             <p class="ad-category text-muted"><strong>Category:</strong> {{ ucfirst($ad->category) }}</p>
-                                            <p class="ad-created text-muted"><strong>Published at:</strong> {{ $ad->created_at }}</p>
-                                            @if ($ad->user)
-                                                <p class="ad-user text-muted"><strong>Created by:</strong> {{ $ad->user->name }}</p>
-                                            @endif
+                                    
+
                                             @if (Auth::check() && Auth::user()->id === $ad->user_id)
                                                 <a href="{{ route('ads.edit', ['id' => $ad->id]) }}" class="btn btn-primary">Edit Ad</a>
                                             @endif

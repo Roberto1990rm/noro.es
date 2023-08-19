@@ -25,6 +25,45 @@
                             <p class="d-inline-block ml-2"><i class="fas fa-heart text-danger"></i> Likes: {{ $ad->likes_count }}</p>
                         @endif
                         <div class="mt-4">
+                            <h4>Comments</h4>
+                            @if ($ad->comments->isEmpty())
+                                <p>No comments yet.</p>
+                            @else
+                                <ul class="list-unstyled">
+                                    @foreach ($ad->comments->chunk(15) as $commentsChunk)
+                                        @foreach ($commentsChunk as $index => $comment)
+                                            <li style="background-color: {{ $index % 2 === 0 ? '#f7f7f7' : '#ffffff' }}">
+                                                <div>
+                                                    <p>{{ Str::limit($comment->content, 300) }}</p>
+                                                    <p class="text-muted">Posted by: {{ $comment->user->name }} on {{ $comment->created_at }}</p>
+                                                   
+                                                   @auth
+                                                    @if (Auth::user()->is_revisor || Auth::user()->id === $comment->user_id)
+                                                        <form action="{{ route('ads.comments.destroy', ['ad_id' => $ad->id, 'comment_id' => $comment->id]) }}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                                        </form>
+                                                    @endif
+                                                    @endauth
+                                                </div>
+                                            </li>
+                                        @endforeach
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </div>
+                        @if (Auth::check())
+                            <form action="{{ route('ads.comments.store', ['id' => $ad->id]) }}" method="POST">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="content">Add a Comment:</label>
+                                    <textarea class="form-control" name="content" id="content" rows="3"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Add Comment</button>
+                            </form>
+                        @endif
+                        <div class="mt-4">
                             <a href="{{ route('ads.index') }}" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back to List</a>
                         </div>
                     </div>

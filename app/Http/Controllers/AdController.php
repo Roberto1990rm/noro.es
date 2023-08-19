@@ -5,6 +5,7 @@ use App\Models\Ad; // Asegúrate de importar el modelo correcto
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Comment;
 class AdController extends Controller
 {
     // ...
@@ -21,6 +22,9 @@ class AdController extends Controller
             'content' => 'required|string',
             'category' => 'required|in:nacional,internacional,politica,economia,tecnologia,moda,cultura,entretenimiento,ciencia,motor',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'video_url' => 'nullable',
+
+
         ]);
     
         $validatedData['is_visible'] = 0;
@@ -32,6 +36,10 @@ class AdController extends Controller
             $ad->image = $imagePath;
         }
     
+        if ($request->filled('video_url')) {
+            $ad->video_url = $request->input('video_url');
+        }
+    
         // Asociar el ID del usuario actual al anuncio
         $ad->user_id = auth()->user()->id;
     
@@ -39,6 +47,7 @@ class AdController extends Controller
     
         return redirect()->route('ads.create')->with('success', 'Ad created successfully.');
     }
+    
     
     
 
@@ -156,6 +165,41 @@ public function likeAd($id)
 }
 
 
+
+
+// ...
+
+public function storeComment(Request $request, $id)
+{
+    $ad = Ad::findOrFail($id);
+
+    $request->validate([
+        'content' => 'required|max:500',
+    ]);
+
+    $comment = new Comment([
+        'content' => $request->input('content'),
+    ]);
+
+    $comment->ad()->associate($ad);
+    $comment->user()->associate(auth()->user());
+    $comment->save();
+
+    return redirect()->back()->with('success', 'Comment added successfully.');
+}
+
+public function destroyComment($ad_id, $comment_id)
+{
+    $ad = Ad::findOrFail($ad_id);
+    $comment = Comment::findOrFail($comment_id);
+
+    if (Auth::user()->is_revisor || Auth::user()->id === $comment->user_id) {
+        $comment->delete();
+        return redirect()->back()->with('success', 'Comment deleted successfully.');
+    } else {
+        return redirect()->back()->with('error', 'You do not have permission to delete this comment.');
+    }
+}
 
  
 }

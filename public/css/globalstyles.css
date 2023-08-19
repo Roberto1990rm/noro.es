@@ -81,3 +81,9 @@ body {
     margin-top: 50px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
+
+
+.embed-responsive {
+  max-width: 100%;
+  overflow: hidden;
+}

@@ -23,11 +23,20 @@
 
             <div class="mb-3">
                 <label for="category" class="form-label">Category</label>
-                <select name="category" id="category" class="form-select">
-                    <option value="nacional" {{ $ad->category === 'nacional' ? 'selected' : '' }}>Nacional</option>
-                    <option value="internacional" {{ $ad->category === 'internacional' ? 'selected' : '' }}>Internacional</option>
-                    <!-- Agrega más opciones según tus categorías -->
+                <select id="category" class="form-control @error('category') is-invalid @enderror" name="category" required>
+                    <option value="" disabled selected>{{ __('Select a category') }}</option>
+                    <option value="nacional">{{ __('Nacional') }}</option>
+                    <option value="internacional">{{ __('Internacional') }}</option>
+                    <option value="politica">{{ __('Politica') }}</option>
+                    <option value="economia">{{ __('Economia') }}</option>
+                    <option value="tecnologia">{{ __('Tecnologia') }}</option>
+                    <option value="moda">{{ __('Moda') }}</option>
+                    <option value="cultura">{{ __('Cultura') }}</option>
+                    <option value="entretenimiento">{{ __('Entretenimiento') }}</option>
+                    <option value="ciencia">{{ __('Ciencia') }}</option>
+                    <option value="motor">{{ __('Motor') }}</option>
                 </select>
+                
             </div>
 
             <!-- Agrega más campos de edición aquí -->

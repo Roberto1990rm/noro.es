@@ -11,22 +11,26 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ad_user', function (Blueprint $table) {
+        Schema::create('likes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('ad_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
     
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            // Llaves foráneas
             $table->foreign('ad_id')->references('id')->on('ads')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+    
+            $table->unique(['ad_id', 'user_id']); // Asegura que un usuario solo pueda dar me gusta una vez
         });
     }
     
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('ad_user');
+        Schema::dropIfExists('likes');
     }
 };

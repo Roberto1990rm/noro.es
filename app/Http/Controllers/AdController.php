@@ -117,6 +117,13 @@ public function update(Request $request, $id)
 }
 
 
+public function showMyAds()
+{
+    $userId = Auth::user()->id;
+    $ads = Ad::where('user_id', $userId)->get();
+
+    return view('ads.index', compact('ads'));
+}
 
 
 public function destroy($id)
@@ -125,6 +132,27 @@ public function destroy($id)
     $ad->delete();
 
     return redirect()->route('ads.index')->with('success', 'Ad deleted successfully.');
+}
+
+
+
+
+
+public function likeAd($id)
+{
+    $ad = Ad::findOrFail($id);
+
+    // Verificar si el usuario ya ha dado me gusta
+    $userHasLiked = $ad->likes()->where('user_id', Auth::user()->id)->exists();
+
+    if (!$userHasLiked) {
+        $ad->increment('likes_count');
+
+        // Crear una nueva relación en la tabla pivot de likes
+        $ad->likes()->attach(Auth::user()->id);
+    }
+
+    return redirect()->back()->with('success', 'You liked this ad.');
 }
 
 

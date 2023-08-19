@@ -32,7 +32,9 @@ Route::get('/ads', [AdController::class, 'index'])->name('ads.index');
 Route::get('/ads/{id}', [AdController::class, 'show'])->name('ads.show');
 Route::get('/ads/{id}/edit', [AdController::class, 'edit'])->name('ads.edit');
 Route::put('/ads/{id}', [AdController::class, 'update'])->name('ads.update');
+Route::get('/my-ads', [AdController::class, 'showMyAds'])->name('ads.show-my-ads');
 Route::delete('/ads/{id}', [AdController::class, 'destroy'])->name('ads.destroy');
+Route::post('/ads/{id}/like', [AdController::class, 'likeAd'])->name('ads.like');
 
 // routes/web.php
 

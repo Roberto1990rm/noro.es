@@ -2,8 +2,44 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                <h1 class="mb-4">
+                    @if ($selectedCategory)
+                        {{ __('Latest News in') }} {{ ucfirst($selectedCategory) }} {{ __('Category') }}
+                    @else
+                        {{ __('Latest News') }}
+                    @endif
+                </h1>
                 <div class="card">
+                    
                     <div class="card-header bg-primary text-white">{{ __('Professional News') }}</div>
+     <div class="card-body">
+                        <form action="{{ route('ads.index') }}" method="GET" class="mb-3">
+                            <label for="category" class="form-label">Filter by Category:</label>
+                            <div class="input-group">
+                               <select id="category" class="form-control @error('category') is-invalid @enderror" name="category" required>
+    <option value="" disabled selected>{{ __('Select a category') }}</option>
+    <option value="nacional">{{ __('Nacional') }}</option>
+    <option value="internacional">{{ __('Internacional') }}</option>
+    <option value="politica">{{ __('Politica') }}</option>
+    <option value="economia">{{ __('Economia') }}</option>
+    <option value="tecnologia">{{ __('Tecnologia') }}</option>
+    <option value="moda">{{ __('Moda') }}</option>
+    <option value="cultura">{{ __('Cultura') }}</option>
+    <option value="entretenimiento">{{ __('Entretenimiento') }}</option>
+    <option value="ciencia">{{ __('Ciencia') }}</option>
+    <option value="motor">{{ __('Motor') }}</option>
+</select>
+
+                                <button type="submit" class="btn btn-primary">Apply Filter</button>
+                            </div>
+                        </form>
+
+                        
+
+                        
+                        @if (Auth::check())
+                            <a href="{{ route('ads.show-my-ads') }}" class="btn btn-secondary mb-3">View My Ads</a>
+                        @endif
 
                     <div class="card-body">
                         <!-- Resto del formulario y contenido -->
@@ -70,11 +106,12 @@
                                                 <a href="{{ route('ads.edit', ['id' => $ad->id]) }}" class="btn btn-primary">Edit Ad</a>
                                             @endif
                                             <div class="d-flex justify-content-between align-items-center mt-3">
-                                                <form action="{{ route('ads.like', ['id' => $ad->id]) }}" method="POST">
+                                                <form class="like-form" action="{{ route('ads.like', ['id' => $ad->id]) }}" method="POST">
                                                     @csrf
-                                                    <button type="submit" class="btn btn-link"><i class="fas fa-thumbs-up text-primary"></i></button>
+                                                    <button type="submit" class="btn btn-link like-button"><i class="fas fa-thumbs-up text-primary"></i></button>
                                                 </form>
-                                                <p class="ad-likes"><i class="fas fa-heart text-danger"></i> {{ $ad->likes_count }}</p>
+                                                <p class="ad-likes"><i class="fas fa-heart text-danger"></i> <span class="like-count">{{ $ad->likes_count }}</span></p>
+                                                
                                             </div>
                                         </div>
                                     </div>

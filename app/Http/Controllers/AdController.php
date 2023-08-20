@@ -22,7 +22,7 @@ class AdController extends Controller
             'subtitle' => 'nullable|string|max:255',
             'content' => 'required|string',
             'category' => 'required|in:nacional,internacional,politica,economia,tecnologia,moda,cultura,entretenimiento,ciencia,motor',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'video_url' => 'nullable',
             'related_images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Add validation for related images
         ]);
@@ -66,14 +66,10 @@ class AdController extends Controller
         return redirect()->route('ads.create')->with('success', 'Ad created successfully.');
     }
     
-    
-    
-
-
-    
 
     public function index(Request $request)
     {
+        $selectedCategory = $request->input('category');
         $category = $request->input('category'); // Obtener la categoría del filtro
         $query = Ad::query();
     
@@ -83,7 +79,7 @@ class AdController extends Controller
     
         $ads = $query->orderBy('created_at', 'desc')->get();
     
-        return view('ads.index', compact('ads'));
+        return view('ads.index', compact('ads','selectedCategory'));
     }
     
     
@@ -140,12 +136,13 @@ public function update(Request $request, $id)
 }
 
 
-public function showMyAds()
+public function showMyAds(Request $request)
 {
+    $selectedCategory = $request->input('category');
     $userId = Auth::user()->id;
     $ads = Ad::where('user_id', $userId)->get();
-
-    return view('ads.index', compact('ads'));
+    
+    return view('ads.index', compact('ads', 'selectedCategory'));
 }
 
 

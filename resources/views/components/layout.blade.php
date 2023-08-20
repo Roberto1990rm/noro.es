@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <script src="{{ asset('js/navbar.js') }}"></script>
+    <script src="{{ asset('js/a.js') }}"></script>
     <link href="{{ asset('css/globalstyles.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
   </head>
@@ -18,7 +18,20 @@
     <x-navbar />
     <div class="mt60px">
     {{$slot}}
-  
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const addRelatedImageButton = document.getElementById('add-related-image');
+            const relatedImagesContainer = document.querySelector('.related-images-container');
+
+            addRelatedImageButton.addEventListener('click', function() {
+                const newInput = document.createElement('input');
+                newInput.type = 'file';
+                newInput.className = 'form-control mt-2';
+                newInput.name = 'related_images[]';
+                relatedImagesContainer.appendChild(newInput);
+            });
+        });
+    </script>
   </div>
     <x-footer />
     @vite(['resources/js/app.js'])

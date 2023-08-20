@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Comment;
+use App\Models\RelatedImage;
 class AdController extends Controller
 {
     // ...
@@ -23,8 +24,7 @@ class AdController extends Controller
             'category' => 'required|in:nacional,internacional,politica,economia,tecnologia,moda,cultura,entretenimiento,ciencia,motor',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'video_url' => 'nullable',
-
-
+            'related_images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Add validation for related images
         ]);
     
         $validatedData['is_visible'] = 0;
@@ -44,6 +44,24 @@ class AdController extends Controller
         $ad->user_id = auth()->user()->id;
     
         $ad->save();
+    
+        $relatedImagePaths = [];
+    
+        if ($request->hasFile('related_images')) {
+            foreach ($request->file('related_images') as $relatedImage) {
+                $imagePath = $relatedImage->store('related_images', 'public');
+                $relatedImagePaths[] = $imagePath;
+            }
+    
+            foreach ($relatedImagePaths as $imagePath) {
+                $relatedImage = new RelatedImage([
+                    'image_path' => $imagePath,
+                    'ad_id' => $ad->id,
+                ]);
+    
+                $relatedImage->save();
+            }
+        }
     
         return redirect()->route('ads.create')->with('success', 'Ad created successfully.');
     }

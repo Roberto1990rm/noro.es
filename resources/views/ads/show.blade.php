@@ -7,9 +7,23 @@
 
                     <div class="card-body">
                         <h2 class="mb-3">{{ $ad->title }}</h2>
-                        @if ($ad->image)
-                            <img src="{{ $ad->getImageUrl() }}" alt="{{ $ad->title }}" class="img-fluid ad-image mb-3" style="max-height: 300px;">
-                        @endif
+                        <div id="imageCarousel" class="carousel slide mb-3" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                @foreach ($ad->relatedImages as $index => $relatedImage)
+                                    <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                                        <img src="{{ asset('storage/' . $relatedImage->image_path) }}" alt="Related Image" class="d-block w-100 img-fluid ad-image">
+                                    </div>
+                                @endforeach
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
                         <p class="ad-subtitle text-muted">{{ $ad->subtitle }}</p>
                         <p class="ad-category text-primary"><strong>Category:</strong> {{ ucfirst($ad->category) }}</p>
                         <div class="ad-content mb-4">{{ $ad->content }}</div>
@@ -24,6 +38,7 @@
                             </form>
                             <p class="d-inline-block ml-2"><i class="fas fa-heart text-danger"></i> Likes: {{ $ad->likes_count }}</p>
                         @endif
+                          
                         <div class="mt-4">
                             <h4>Comments</h4>
                             @if ($ad->comments->isEmpty())
@@ -37,14 +52,14 @@
                                                     <p>{{ Str::limit($comment->content, 300) }}</p>
                                                     <p class="text-muted">Posted by: {{ $comment->user->name }} on {{ $comment->created_at }}</p>
                                                    
-                                                   @auth
-                                                    @if (Auth::user()->is_revisor || Auth::user()->id === $comment->user_id)
-                                                        <form action="{{ route('ads.comments.destroy', ['ad_id' => $ad->id, 'comment_id' => $comment->id]) }}" method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
-                                                        </form>
-                                                    @endif
+                                                    @auth
+                                                        @if (Auth::user()->is_revisor || Auth::user()->id === $comment->user_id)
+                                                            <form action="{{ route('ads.comments.destroy', ['ad_id' => $ad->id, 'comment_id' => $comment->id]) }}" method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                                            </form>
+                                                        @endif
                                                     @endauth
                                                 </div>
                                             </li>

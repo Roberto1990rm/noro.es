@@ -6,77 +6,65 @@
                     <div class="card-header bg-primary text-white">{{ __('Professional News') }}</div>
 
                     <div class="card-body">
-                        <form action="{{ route('ads.index') }}" method="GET" class="mb-3">
-                            <label for="category" class="form-label">Filter by Category:</label>
-                            <div class="input-group">
-                                <select id="category" class="form-control @error('category') is-invalid @enderror" name="category" required>
-                                    <option value="" disabled selected>{{ __('Select a category') }}</option>
-                                    <option value="nacional">{{ __('Nacional') }}</option>
-                                    <option value="internacional">{{ __('Internacional') }}</option>
-                                    <option value="politica">{{ __('Politica') }}</option>
-                                    <option value="economia">{{ __('Economia') }}</option>
-                                    <option value="tecnologia">{{ __('Tecnologia') }}</option>
-                                    <option value="moda">{{ __('Moda') }}</option>
-                                    <option value="cultura">{{ __('Cultura') }}</option>
-                                    <option value="entretenimiento">{{ __('Entretenimiento') }}</option>
-                                    <option value="ciencia">{{ __('Ciencia') }}</option>
-                                    <option value="motor">{{ __('Motor') }}</option>
-                                </select>
-                                <button type="submit" class="btn btn-primary">Apply Filter</button>
-                            </div>
-                        </form>
-                        
-                        @if (Auth::check())
-                            <a href="{{ route('ads.show-my-ads') }}" class="btn btn-secondary mb-3">View My Ads</a>
-                        @endif
+                        <!-- Resto del formulario y contenido -->
 
-                        <div class="row row-cols-2">
+                        <div class="row">
                             @foreach ($ads as $ad)
                                 <div class="col-md-6 mb-4">
                                     <div class="card ad-card">
                                         <div class="card-body">
                                             <h4 class="ad-title">{{ $ad->title }}</h4>
                                             <p class="ad-subtitle">{{ $ad->subtitle }}</p>
+                                            
+                                            <!-- Mostrar la imagen si no hay video -->
+                                            @if (!$ad->video_url && $ad->image)
+                                                <img src="{{ $ad->getImageUrl() }}" alt="{{ $ad->title }}" class="img-fluid ad-image mb-3" style="max-height: 200px; width: 100%;">
+                                            @endif
 
                                             <!-- Mostrar el video si hay una URL de video -->
                                             @if ($ad->video_url)
-                                            <div class="embed-responsive embed-responsive-16by9 mb-3">
-                                                <style>
-                                                    .responsive-video {
-                                                        position: relative;
-                                                        padding-bottom: 56.25%; /* 16:9 aspect ratio */
-                                                        height: 0;
-                                                        overflow: hidden;
-                                                    }
-                                                    
-                                                    .responsive-video iframe,
-                                                    .responsive-video object,
-                                                    .responsive-video embed {
-                                                        position: absolute;
-                                                        top: 0;
-                                                        left: 0;
-                                                        width: 100%;
-                                                        height: 100%;
-                                                    }
-                                                </style>
-                                                <div class="responsive-video">
-                                                    {!! $ad->video_url !!} <!-- Pega aquí el código de inserción que copiaste -->
-                                                </div>
-                                            </div>
-                                            
-                                            
-                                            @else
-                                                <!-- Mostrar la imagen si no hay una URL de video -->
-                                                @if ($ad->image)
-                                                    <div class="text-center mb-3">
-                                                        <img src="{{ $ad->getImageUrl() }}" alt="{{ $ad->title }}" class="img-fluid ad-image" style="max-height: 150px;">
+                                                <div class="embed-responsive embed-responsive-16by9">
+                                                    <style>
+                                                        .embed-responsive {
+                                                            position: relative;
+                                                            display: block;
+                                                            width: 100%;
+                                                            padding: 0;
+                                                            overflow: hidden;
+                                                        }
+                                                        
+                                                        .embed-responsive::before {
+                                                            content: "";
+                                                            display: block;
+                                                            padding-top: 56.25%; /* 16:9 aspect ratio */
+                                                        }
+                                                        
+                                                        .embed-responsive .responsive-video {
+                                                            position: absolute;
+                                                            top: 0;
+                                                            left: 0;
+                                                            width: 100%;
+                                                            height: 100%;
+                                                            display: flex;
+                                                            justify-content: center;
+                                                            align-items: center;
+                                                        }
+                                                        
+                                                        .ad-image {
+                                                            width: 100%;
+                                                            height: auto;
+                                                        }
+                                                    </style>
+                                                    <div class="responsive-video">
+                                                        {!! $ad->video_url !!} <!-- Pega aquí el código de inserción que copiaste -->
                                                     </div>
-                                                @endif
+                                                </div>
                                             @endif
+
+                                            <!-- Resto del contenido del anuncio -->
 
                                             <p class="ad-content">{{ Str::limit($ad->content, 30) }} <a href="{{ route('ads.show', ['id' => $ad->id]) }}" class="text-primary">Read more</a></p>
                                             <p class="ad-category text-muted"><strong>Category:</strong> {{ ucfirst($ad->category) }}</p>
-                                    
 
                                             @if (Auth::check() && Auth::user()->id === $ad->user_id)
                                                 <a href="{{ route('ads.edit', ['id' => $ad->id]) }}" class="btn btn-primary">Edit Ad</a>

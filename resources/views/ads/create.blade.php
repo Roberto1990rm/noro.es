@@ -80,6 +80,13 @@
                                 @enderror
                             </div>
                             
+                            <div class="form-group">
+                                <label for="related_images">{{ __('Related Images') }}</label>
+                                <div class="related-images-container">
+                                    <input type="file" class="form-control mt-2" name="related_images[]">
+                                </div>
+                                <button type="button" class="btn btn-secondary mt-2" id="add-related-image">{{ __('Add Another Image') }}</button>
+                            </div>
                             
                             <div class="form-group">
                                 @auth

@@ -56,4 +56,13 @@ class Ad extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    // Dentro del modelo Ad
+public function relatedImages()
+{
+    return $this->hasMany(RelatedImage::class);
+}
+
+
+
 }

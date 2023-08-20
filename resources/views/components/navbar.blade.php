@@ -4,7 +4,7 @@
       <div class="navigation">
         <ul>
           <li class="list logo">
-            <a href="/" style="color: black;">
+            <a href="/" style="color: black; margin-right: 20px;">
                 <img src="{{ asset('images/nn.png') }}" alt="Logo" width="90" height="90" class="logo-image">
             </a>
         </li>

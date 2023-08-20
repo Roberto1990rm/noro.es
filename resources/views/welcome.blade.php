@@ -1,21 +1,23 @@
 <x-layout>
     <style>
+        /* Estilos de las cards */
         .card {
             border: 1px solid #ccc;
             border-radius: 10px;
             transition: transform 0.3s, box-shadow 0.3s;
-            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+            background: linear-gradient(45deg, #deedae, #e0e0e0);
         }
 
         .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            background: linear-gradient(45deg, #ffffff, #f0f0f0);
+            background: linear-gradient(45deg, #ffffff, #a94991);
         }
 
+        /* Estilos de las cards de anuncios */
         .ad-card {
             border: 1px solid #ccc;
-            padding: 20px;
+            padding: 15px; /* Ajusta el padding */
             border-radius: 10px;
             transition: transform 0.3s, box-shadow 0.3s;
             background-color: #e74c3c;
@@ -26,7 +28,32 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             background-color: #3498db;
         }
+
+        /* Ajusta los márgenes de los elementos internos */
+        .ad-title {
+            color: #080808;
+            font-size: 1.25rem;
+            margin: 5px 0; /* Ajusta los márgenes vertical y horizontal */
+        }
+
+        .ad-subtitle {
+            color: #101ee6;
+            font-size: 1rem;
+            margin: 5px 0; /* Ajusta los márgenes vertical y horizontal */
+        }
+
+        .ad-image {
+            max-height: 200px;
+            width: 100%;
+            margin-bottom: 10px; /* Ajusta el margen inferior */
+        }
+
+        .ad-content {
+            color: #080808;
+            margin: 5px 0; /* Ajusta los márgenes vertical y horizontal */
+        }
     </style>
+
 
     <div class="mt-4">
         <div class="container">

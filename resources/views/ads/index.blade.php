@@ -2,7 +2,6 @@
     <style>
         .ad-card {
             border: 1px solid #ccc;
-            padding: 20px;
             border-radius: 10px;
             transition: transform 0.3s, box-shadow 0.3s;
             background: linear-gradient(45deg, #f39c12, #deebb5);
@@ -17,11 +16,22 @@
         }
 
         .colored-box {
-    background-color: #9b59b6;
-    border-radius: 15px; /* Controla el radio de las esquinas redondeadas */
-    
-    box-sizing: border-box;
-  }
+            background-color: #9b59b6;
+            border-radius: 15px;
+            box-sizing: border-box;
+            padding: 20px; /* Agrega un poco de espacio interno a la caja */
+        }
+
+        .card {
+            margin: 0;
+            padding: 0; /* Elimina el padding de la card */
+        }
+
+        .card-body {
+            padding: 10px; /* Ajusta el padding interno de la card-body */
+        }
+
+        /* Más estilos... */
     </style>
 
     <div class="container">
@@ -29,9 +39,9 @@
             <div class="col-md-8 pb-5 colored-box" >
                 <h1 class="mb-4">
                     @if ($selectedCategory)
-                        {{ __('Latest News in') }} {{ ucfirst($selectedCategory) }} {{ __('Category') }}
+                        {{ __('Últimas noticias:') }} {{ ucfirst($selectedCategory) }} 
                     @else
-                        {{ __('Latest News') }}
+                        {{ __('Últimas noticias') }}
                     @endif
                 </h1>
                 <div class="card">

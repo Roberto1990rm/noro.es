@@ -1,10 +1,39 @@
 <x-layout>
+    <style>
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(45deg, #ffffff, #f0f0f0);
+        }
+
+        .ad-card {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            background-color: #e74c3c;
+        }
+
+        .ad-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            background-color: #3498db;
+        }
+    </style>
+
     <div class="mt-4">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="card-header">{{ __('Dashboard') }}</div>
+                        <div class="card-header bg-primary text-white">{{ __('Dashboard') }}</div>
 
                         <div class="card-body">
                             @if (session('status'))
@@ -13,7 +42,7 @@
                                 </div>
                             @endif
 
-                            <h2>Welcome, {{ Auth::user()->name }}!</h2>
+                            <h2 class="mb-4">Welcome, {{ Auth::user()->name }}!</h2>
                             <p>{{ __('You are logged in!') }}</p>
 
                             <div class="mt-4">

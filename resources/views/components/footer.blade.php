@@ -1,5 +1,5 @@
 <footer class="footer mt-4">
-    <div class="container">
+    <div class="containerfooter">
         <div class="row">
             <div class="col-md-4">
                 <h4>About Us</h4>

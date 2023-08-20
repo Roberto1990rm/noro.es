@@ -1,4 +1,19 @@
 <x-layout>
+    <style>
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(45deg, #ffffff, #f0f0f0);
+        }
+    </style>
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">

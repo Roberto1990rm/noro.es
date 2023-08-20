@@ -56,7 +56,7 @@
         </div>
 
         <div class="container mt-4">
-            <h1 class="text-center">Últimas publicaciones</h1>
+            <h1 class="text-center h1welcome">Últimas publicaciones</h1>
             <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
                 
                 @foreach ($latestAds as $ad)

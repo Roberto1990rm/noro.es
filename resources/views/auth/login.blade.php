@@ -1,7 +1,7 @@
 <x-layout>
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+
+    <div class="row justify-content-center" >
+        <div class="col-md-8" style="margin-top: -50px; margin-bottom: -20px;">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
 
@@ -63,6 +63,31 @@
                             </div>
                         </div>
                     </form>
+                    <div class="container">
+                        <div id="imageCarousel" class="carousel slide mt-4" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                @php
+                                    $carouselImages = [
+                                        '1.jpg',
+                                        '2.jpg',
+                                        '4.jpg',
+                                    ];
+                                @endphp
+                                @foreach ($carouselImages as $index => $image)
+                                    <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                                        <img src="{{ asset('images/' . $image) }}" class="d-block w-100" alt="Image {{ $index + 1 }}">
+                                    </div>
+                                @endforeach
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
                 </div>
             </div>
         </div>

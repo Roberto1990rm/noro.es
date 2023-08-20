@@ -14,7 +14,7 @@
         }
     </style>
 
-    <div class="container">
+    <div class="container" style="text-align:center;">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -41,7 +41,7 @@
                         </div>
                         <p class="ad-subtitle text-muted">{{ $ad->subtitle }}</p>
                         <p class="ad-category text-primary"><strong>Category:</strong> {{ ucfirst($ad->category) }}</p>
-                        <div class="ad-content mb-4">{{ $ad->content }}</div>
+                        <div class="ad-content mb-4" style="text-align: justify;">{{ $ad->content }}</div>
                         <p class="text-muted"><strong>Published at:</strong> {{ $ad->created_at }}</p>
                         @if ($ad->user)
                             <p class="text-muted"><strong>Created by:</strong> {{ $ad->user->name }}</p>
@@ -51,8 +51,9 @@
                                 @csrf
                                 <button type="submit" class="btn btn-link text-primary"><i class="fas fa-thumbs-up"></i> Like</button>
                             </form>
+                            @endif
                             <p class="d-inline-block ml-2"><i class="fas fa-heart text-danger"></i> Likes: {{ $ad->likes_count }}</p>
-                        @endif
+                      
                           
                         <div class="mt-4">
                             <h4>Comments</h4>

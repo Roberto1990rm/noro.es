@@ -89,11 +89,12 @@
                             </div>
                             
                             <div class="form-group">
-                                @auth
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Create News') }}
-                                    </button>
-                                @endauth
+                                @if(Auth::check() && Auth::user()->is_revisor == 1)
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Create News') }}
+                                </button>
+                            @endif
+                            
                                 @guest
                                     <h1>{{ __('You must be registered to publish') }}</h1>
                                 @endguest

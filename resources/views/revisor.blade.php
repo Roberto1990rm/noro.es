@@ -1,6 +1,6 @@
 <x-layout>
     <div class="container">
-        <h2>Revisor Panel - Ads</h2>
+        <h2 style="color: white;">Revisor Panel - Ads</h2>
         <div class="table-responsive">
             <table class="table">
                 <thead>

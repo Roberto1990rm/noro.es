@@ -3,6 +3,11 @@
     <div class="navbody">
       <div class="navigation">
         <ul>
+          <li class="list logo">
+            <a href="/" style="color: black;">
+                <img src="{{ asset('images/nn.png') }}" alt="Logo" width="90" height="90" class="logo-image">
+            </a>
+        </li>
           <li class="list">
             <a href="/" style="color: black;">
               <span class="text">Home</span>
@@ -22,7 +27,7 @@
               </span>
             </a>
           </li>
-        
+          @if(Auth::check() && Auth::user()->is_revisor == 1)
           <li class="list">
             <a href="/ads/create" style="color: black;">
               <span class="text">Publicar</span>
@@ -31,6 +36,7 @@
               </span>
             </a>
           </li>
+          @endif
           <li class="list">
             @auth
                 @if (Auth::user()->is_revisor)
@@ -38,7 +44,7 @@
                         <span class="icon">
                             <i class="bi bi-person"></i>
                         </span>
-                        <span class="text">Revisor Panel</span>
+                        <span class="text">Revisor</span>
                         <!-- Mostrar contador si hay anuncios no visibles -->
                         @php
                             $notVisibleAdsCount = app('App\Http\Controllers\AdController')->countNotVisibleAds();
@@ -57,7 +63,7 @@
                         <span class="icon">
                             <i class="bi bi-gear"></i> <!-- Icono de engranaje para el panel de administrador -->
                         </span>
-                        <span class="text">Admin Panel</span>
+                        <span class="text">Admin</span>
                     </a>
                 @endif
             @endauth
@@ -65,7 +71,7 @@
         </li>
      
         </ul>
-        <ul class="navbar-nav ms-auto">
+        <ul class="navbar-nav ms-auto" style="margin-left: -30px;">
           <!-- Authentication Links -->
           @guest
           @if (Route::has('login'))
@@ -85,18 +91,18 @@
                 <span class="icon">
                   <i class="bi bi-person-plus"></i>
                 </span>
-                <span class="text">Register</span>
+                <span class="text">Registro</span>
               </a>
             </li>
           @endif
         @else
-          <li class="nav-item">
+          <li class="nav-item" style="margin-left: -10px;">
             <a class="nav-link" href="{{ route('logout') }}"
                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
               <span class="icon">
                 <i class="bi bi-box-arrow-right"></i>
               </span>
-              <span class="text">Logout</span>
+              <span class="text">Exit</span>
             </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
               @csrf

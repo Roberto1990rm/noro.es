@@ -212,5 +212,7 @@ public function destroyComment($ad_id, $comment_id)
     }
 }
 
+
+
  
 }

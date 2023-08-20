@@ -61,15 +61,15 @@
                             <a href="{{ route('ads.show-my-ads') }}" class="btn btn-secondary mb-3">View My Ads</a>
                         @endif
 
-                        <div class="card-body">
+                        <div class="card-body" style="text-align: center;">
                             <!-- Resto del contenido de la tarjeta -->
                             <div class="row">
                                 @foreach ($ads as $ad)
                                     <div class="col-md-6 mb-4">
                                         <div class="card ad-card">
                                             <div class="card-body">
-                                                <h4 class="ad-title">{{ $ad->title }}</h4>
-                                                <p class="ad-subtitle">{{ $ad->subtitle }}</p>
+                                                <h4 class="ad-title" style="color:#080808">{{ $ad->title }}</h4>
+                                                <p class="ad-subtitle" style="color:#101ee6;">{{ $ad->subtitle }}</p>
                                                 
                                                 <!-- Mostrar la imagen si no hay video -->
                                                 @if (!$ad->video_url && $ad->image)
@@ -118,17 +118,23 @@
 
                                                 <!-- Resto del contenido del anuncio -->
 
-                                                <p class="ad-content">{{ Str::limit($ad->content, 30) }} <a href="{{ route('ads.show', ['id' => $ad->id]) }}" class="text-primary">Read more</a></p>
-                                                <p class="ad-category text-muted"><strong>Category:</strong> {{ ucfirst($ad->category) }}</p>
-
+                                                <p class="ad-content" style="color:#080808;">{{ Str::limit($ad->content, 30) }} <a href="{{ route('ads.show', ['id' => $ad->id]) }}" class="text-primary">Read more</a></p>
+                                                <a href="{{ route('ads.index', ['category' => $ad->category]) }}" class="ad-category text-muted">
+                                                    <strong>Category:</strong> {{ ucfirst($ad->category) }}
+                                                </a>
+                                                
                                                 @if (Auth::check() && Auth::user()->id === $ad->user_id)
                                                     <a href="{{ route('ads.edit', ['id' => $ad->id]) }}" class="btn btn-primary">Edit Ad</a>
                                                 @endif
                                                 <div class="d-flex justify-content-between align-items-center mt-3">
+                                                    @auth
+                                                        
+                                                  
                                                     <form class="like-form" action="{{ route('ads.like', ['id' => $ad->id]) }}" method="POST">
                                                         @csrf
                                                         <button type="submit" class="btn btn-link like-button"><i class="fas fa-thumbs-up text-primary"></i></button>
                                                     </form>
+                                                    @endauth
                                                     <p class="ad-likes"><i class="fas fa-heart text-danger"></i> <span class="like-count">{{ $ad->likes_count }}</span></p>
                                                 </div>
                                             </div>

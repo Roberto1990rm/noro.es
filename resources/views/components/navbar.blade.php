@@ -8,6 +8,9 @@
                 <img src="{{ asset('images/nn.png') }}" alt="Logo" width="90" height="90" class="logo-image">
             </a>
         </li>
+        @guest
+          
+        
           <li class="list">
             <a href="/" style="color: black;">
               <span class="text">Home</span>
@@ -16,6 +19,7 @@
               </span>
             </a>
           </li>
+          @endguest
           <li class="list">
             <a href="/ads" style="color: black;">
               <span class="text">Noticias</span>

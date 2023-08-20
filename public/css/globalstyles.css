@@ -46,6 +46,30 @@ h1 {
 
 
 
+.scroll-navbar {
+  width: 100%; /* O ajusta el ancho según tus necesidades */
+  background-color: #f0f0f0;
+  overflow-x: scroll;
+  white-space: nowrap; /* Evita que los elementos se dividan en varias líneas */
+}
+
+.scroll-navbar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: inline-block; /* Muestra la lista en línea */
+}
+
+.scroll-navbar li {
+  display: inline-block; /* Muestra los elementos en línea */
+  padding: 10px;
+}
+
+.scroll-navbar a {
+  text-decoration: none;
+  color: #333;
+}
+
 
 /* Estilos para tamaño de pantalla mediano y pequeño */
 @media (max-width: 991px) {
@@ -134,4 +158,28 @@ body {
   width: 100%;
   max-width: 600px; /* Ajusta el ancho máximo según tus preferencias */
   margin: auto;
+}
+
+
+.scroll-navbar {
+  margin-top: -60px;
+  color: pink;
+  background-color: purple;
+}
+
+/* Cambia el color del texto al estar en hover */
+.scroll-navbar a:hover {
+  color: white;
+}
+
+/* Estilos para los enlaces de título */
+.scroll-navbar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.scroll-navbar li {
+  display: inline;
+  margin-right: 10px; /* Espacio entre títulos */
 }

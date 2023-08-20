@@ -69,6 +69,7 @@ class AdController extends Controller
 
     public function index(Request $request)
     {
+        $latestAds = Ad::orderBy('created_at', 'desc')->take(10)->get();
         $selectedCategory = $request->input('category');
         $category = $request->input('category'); // Obtener la categoría del filtro
         $query = Ad::query();
@@ -79,14 +80,14 @@ class AdController extends Controller
     
         $ads = $query->orderBy('created_at', 'desc')->get();
     
-        return view('ads.index', compact('ads','selectedCategory'));
+        return view('ads.index', compact('ads','selectedCategory','latestAds'));
     }
     
     
     public function show($id)
-    {
+    { $latestAds = Ad::orderBy('created_at', 'desc')->take(10)->get();
         $ad = Ad::findOrFail($id); // Buscar el anuncio por su ID
-        return view('ads.show', compact('ad'));
+        return view('ads.show', compact('ad', 'latestAds'));
     }
     
 

@@ -1,4 +1,19 @@
 <x-layout>
+    <div class="scroll-navbar" style="margin-top: -60px; color: pink; background-color: purple;">
+        <ul>
+            @foreach ($latestAds as $index => $ad)
+                <li class="{{ $index === 0 ? 'first-item' : '' }}" >
+                    @php
+                        $colors = ['#FF5733', '#33FF57', '#5733FF', '#33FFFF', '#FF33C7']; // Colores claros diferentes
+                        $currentColor = $colors[$index % count($colors)];
+                    @endphp
+                    <a style="color: {{ $currentColor }};" href="{{ route('ads.show', ['id' => $ad->id]) }}" class="{{ $index % 2 === 0 ? 'even-link' : 'odd-link' }}">"{{ $ad->title }}"</a>
+                    @if (!$loop->last) | @endif
+                </li>
+            @endforeach
+        </ul>
+    </div>
+    
     <style>
         /* Estilos de las cards */
         .card {
@@ -81,6 +96,33 @@
                 </div>
             </div>
         </div>
+
+        <div class="container">
+            <div id="imageCarousel" class="carousel slide mt-4" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    @php
+                        $carouselImages = [
+                            '1.jpg',
+                            '2.jpg',
+                            '4.jpg',
+                        ];
+                    @endphp
+                    @foreach ($carouselImages as $index => $image)
+                        <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                            <img src="{{ asset('images/' . $image) }}" class="d-block w-100" alt="Image {{ $index + 1 }}">
+                        </div>
+                    @endforeach
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+    </div>
 
         <div class="container mt-4">
             <h1 class="text-center h1welcome">Últimas publicaciones</h1>

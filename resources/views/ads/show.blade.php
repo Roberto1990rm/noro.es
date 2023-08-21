@@ -13,12 +13,12 @@
             background: linear-gradient(45deg, #ffffff, #f0f0f0);
         }
     </style>
-    <div class="scroll-navbar" style="margin-top: -60px; color: pink; background-color: purple;">
+    <div class="scroll-navbar animation-scroll" style="margin-top: -60px; color: pink; background-color: purple;">
         <ul>
             @foreach ($latestAds as $index => $ad)
                 <li class="{{ $index === 0 ? 'first-item' : '' }}" >
                     @php
-                        $colors = ['#FF5733', '#33FF57', '#33FFFF', '#FF33C7']; // Colores claros diferentes
+                        $colors = ['#FF5733', '#33FF57','#FFFFFF', '#FF33C7']; // Colores claros diferentes
                         $currentColor = $colors[$index % count($colors)];
                     @endphp
                     <a style="color: {{ $currentColor }};" href="{{ route('ads.show', ['id' => $ad->id]) }}" class="{{ $index % 2 === 0 ? 'even-link' : 'odd-link' }}">"{{ $ad->title }}"</a>

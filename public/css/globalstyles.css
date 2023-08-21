@@ -51,6 +51,7 @@ h1 {
   background-color: #f0f0f0;
   overflow-x: scroll;
   white-space: nowrap; /* Evita que los elementos se dividan en varias líneas */
+  text-align: center;
 }
 
 .scroll-navbar ul {
@@ -72,7 +73,6 @@ h1 {
 
 
 /* Estilos para tamaño de pantalla mediano y pequeño */
-@media (max-width: 991px) {
  
 
   .row-cols-2 {
@@ -87,7 +87,6 @@ h1 {
     padding-left: 0.5rem;
   }
 
-}
 
 /* Estilos para las tarjetas */
 .ad-card {
@@ -135,12 +134,11 @@ body {
 
 
 /* Estilos para dispositivos móviles */
-@media (max-width: 767px) {
+
   .video-row {
       width: 100%;
       margin-right: 0; /* Elimina el margen derecho para ocupar todo el ancho */
   } 
-}
 
 
 .navigation {
@@ -182,4 +180,28 @@ body {
 .scroll-navbar li {
   display: inline;
   margin-right: 10px; /* Espacio entre títulos */
+}
+
+
+.animation-scroll ul {
+  animation: scrollAnimation 30s linear infinite; /* Ajusta la velocidad (30s) según lo necesario */
+  white-space: nowrap; /* Evita el ajuste de línea */
+  overflow: hidden; /* Oculta el desbordamiento */
+  margin: 0; /* Elimina el margen de la lista */
+  padding: 0; /* Elimina el relleno de la lista */
+  list-style: none; /* Elimina los marcadores de lista */
+}
+
+.animation-scroll li {
+  display: inline-block;
+  margin-right: 20px; /* Espacio entre elementos */
+}
+
+@keyframes scrollAnimation {
+  0% {
+      transform: translateX(0);
+  }
+  100% {
+      transform: translateX(-100%);
+  }
 }

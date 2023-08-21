@@ -69,7 +69,7 @@ class AdController extends Controller
 
     public function index(Request $request)
     {
-        $latestAds = Ad::orderBy('created_at', 'desc')->take(10)->get();
+        $latestAds = Ad::orderBy('created_at', 'desc')->take(7)->get();
         $selectedCategory = $request->input('category');
         $category = $request->input('category'); // Obtener la categoría del filtro
         $query = Ad::query();
@@ -138,12 +138,13 @@ public function update(Request $request, $id)
 
 
 public function showMyAds(Request $request)
-{
+{   
+    $latestAds = Ad::orderBy('created_at', 'desc')->take(10)->get();
     $selectedCategory = $request->input('category');
     $userId = Auth::user()->id;
     $ads = Ad::where('user_id', $userId)->get();
     
-    return view('ads.index', compact('ads', 'selectedCategory'));
+    return view('ads.index', compact('ads', 'selectedCategory', 'latestAds'));
 }
 
 

@@ -45,16 +45,14 @@
                                     <option value="" disabled selected>{{ __('Select a category') }}</option>
                                     <option value="espana">{{ __('España') }}</option>
                                     <option value="europa">{{ __('Europa') }}</option>
-                                    <option value="inmigracion">{{ __('Fronteras abiertas') }}</option>
+                                    <option value="inmigracion">{{ __('Inmigración') }}</option>
                                     <option value="internacional">{{ __('Internacional') }}</option>
                                     <option value="politica">{{ __('Política') }}</option>
                                     <option value="covid">{{ __('Covid 2.0') }}</option>
                                     <option value="agenda2030">{{ __('Agenda2030') }}</option>
                                     <option value="lgtbiq+">{{ __('Lgtbiq+') }}</option>
-                                    <option value="ideologia">{{ __('Ideología de Género') }}</option>
                                     <option value="corrupcion">{{ __('Corrupción') }}</option>
                                     <option value="autoritarismo">{{ __('Autoritarismo') }}</option>
-                                    <option value="alarmismo">{{ __('Alarmismo Climático') }}</option>
                                 </select>
                                 
                                 @error('category')

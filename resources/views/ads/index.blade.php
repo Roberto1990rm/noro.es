@@ -25,7 +25,6 @@
         <button class="btn btn-category" style="background-color: rgb(255, 0, 208);"><a href="{{ route('ads.index', ['category' => 'ideologia']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Ideología de género</a></button>
         <button class="btn btn-category" style="background-color: rgb(255, 0, 47);"><a href="{{ route('ads.index', ['category' => 'corrupcion']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Corrupción</a></button>
         <button class="btn btn-category" style="background-color: rgb(205, 199, 32);"><a href="{{ route('ads.index', ['category' => 'autoritarismo']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Autoritarismo</a></button>
-        <button class="btn btn-category" style="background-color: blue;"><a href="{{ route('ads.index', ['category' => 'alarmismo']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Alarmismo climática</a></button>
     </div>
     
     
@@ -38,10 +37,8 @@
         <button class="btn btn-category" style="background-color: rgb(26, 255, 0);"><a href="{{ route('ads.index', ['category' => 'covid']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Covid 2.0</a></button>
         <button class="btn btn-category" style="background-color: rgb(255, 98, 0);"><a href="{{ route('ads.index', ['category' => 'agenda2030']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Agenda2030</a></button>
         <button class="btn btn-category" style="background-color:rgb(74, 149, 156);;"><a href="{{ route('ads.index', ['category' => 'lgtbiq+']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">LGTBIQ+</a></button>
-        <button class="btn btn-category" style="background-color: rgb(255, 0, 208);"><a href="{{ route('ads.index', ['category' => 'ideologia']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Ideología de género</a></button>
         <button class="btn btn-category" style="background-color: rgb(255, 0, 47);"><a href="{{ route('ads.index', ['category' => 'corrupcion']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Corrupción</a></button>
         <button class="btn btn-category" style="background-color: rgb(205, 199, 32);"><a href="{{ route('ads.index', ['category' => 'autoritarismo']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Autoritarismo</a></button>
-        <button class="btn btn-category" style="background-color: blue;"><a href="{{ route('ads.index', ['category' => 'alarmismo']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Alarmismo climática</a></button>
     </div>
     
     <div class="container-outer">
@@ -70,7 +67,6 @@
                                     <option value="covid">{{ __('Covid 2.0') }}</option>
                                     <option value="agenda2030">{{ __('Agenda2030') }}</option>
                                     <option value="lgtbiq+">{{ __('Lgtbiq+') }}</option>
-                                    <option value="ideologia">{{ __('Ideología de Género') }}</option>
                                     <option value="corrupcion">{{ __('Corrupción') }}</option>
                                     <option value="autoritarismo">{{ __('Autoritarismo') }}</option>
                                     <option value="alarmismo">{{ __('Alarmismo Climático') }}</option>

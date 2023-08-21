@@ -23,19 +23,22 @@
 
             <div class="mb-3">
                 <label for="category" class="form-label">Category</label>
-                <select id="category" class="form-control @error('category') is-invalid @enderror" name="category" required>
-                    <option value="" disabled selected>{{ __('Select a category') }}</option>
-                    <option value="nacional">{{ __('Nacional') }}</option>
-                    <option value="internacional">{{ __('Internacional') }}</option>
-                    <option value="politica">{{ __('Politica') }}</option>
-                    <option value="economia">{{ __('Economia') }}</option>
-                    <option value="tecnologia">{{ __('Tecnologia') }}</option>
-                    <option value="moda">{{ __('Moda') }}</option>
-                    <option value="cultura">{{ __('Cultura') }}</option>
-                    <option value="entretenimiento">{{ __('Entretenimiento') }}</option>
-                    <option value="ciencia">{{ __('Ciencia') }}</option>
-                    <option value="motor">{{ __('Motor') }}</option>
-                </select>
+                <div class="form-group">
+                    <label for="category">{{ __('Category') }}</label>
+                    <div class="form-group">
+                        <label for="category">{{ __('Select a category') }}</label>
+                        <select id="category" class="form-control @error('category') is-invalid @enderror" name="category" required>
+                            <option value="" disabled selected>{{ __('Select a category') }}</option>
+                            @foreach (['espana', 'internacional', 'politica', 'covid', 'agenda2030', 'lgtbiq+', 'ideologia', 'corrupcion', 'autoritarismo', 'alarmismo', 'inmigracion', 'europa'] as $categoryValue)
+                                <option value="{{ $categoryValue }}">{{ __($categoryValue) }}</option>
+                            @endforeach
+                        </select>
+                        @error('category')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
                 
             </div>
 

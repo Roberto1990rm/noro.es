@@ -1,33 +1,31 @@
 <x-layout>
-      
-    <div class="scroll-navbar scroll-navbar animation-scroll" style="margin-top: -60px; color: pink; background-color: purple;">
+    <div class="scroll-navbar animation-scroll" style="margin-top: -60px; color: pink; background-color: purple;">
         <ul>
             @foreach ($latestAds as $index => $ad)
-                <li class="{{ $index === 0 ? 'first-item' : '' }}" >
+                <li class="{{ $index === 0 ? 'first-item' : '' }}">
                     @php
                         $colors = ['#FF5733', '#33FF57', '#FFFFFF', '#FF33C7']; // Colores claros diferentes
                         $currentColor = $colors[$index % count($colors)];
                     @endphp
-                    <a style="color: {{ $currentColor }};" href="{{ route('ads.show', ['id' => $ad->id]) }}" class="{{ $index % 2 === 0 ? 'even-link' : 'odd-link' }}">"{{ $ad->title }}"</a>
+                    <a style="color: {{ $currentColor }};" href="{{ route('ads.show', ['id' => $ad->id]) }}" class="{{ $index % 2 === 0 ? 'even-link' : 'odd-link' }}">{{ $ad->title }}</a>
                     @if (!$loop->last) | @endif
                 </li>
             @endforeach
         </ul>
     </div>
- 
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 pb-5 colored-box" style="margin-right: 30px;">
+    
+    <div class="container-outer">
+        <div class="container-inner">
+            <div class="col-md-8 pb-5 colored-box" style="margin-right: 30px; margin-left:10px;">
                 <h1 class="mb-4">
                     @if ($selectedCategory)
-                        {{ __('Últimas noticias:') }} {{ ucfirst($selectedCategory) }} 
+                        {{ __('Lo último:') }} {{ ucfirst($selectedCategory) }} 
                     @else
-                        {{ __('Últimas noticias') }}
+                        {{ __('Novedades') }}
                     @endif
                 </h1>
                 <div class="card">
-                    <div class="card-header bg-primary text-white">{{ __('Professional News') }}</div>
+                    <div class="card-header bg-primary text-white">{{ __('Publicaciones') }}</div>
                     <div class="card-body">
                         <form action="{{ route('ads.index') }}" method="GET" class="mb-3">
                             <label for="category" class="form-label">Filter by Category:</label>
@@ -60,6 +58,10 @@
                                     <div class="col-md-6 mb-4">
                                         <div class="card ad-card">
                                             <div class="card-body">
+                                                <a href="{{ route('ads.index', ['category' => $ad->category]) }}" class="ad-category text-muted">
+                                                    <strong>Category:</strong> {{ ucfirst($ad->category) }}
+                                                </a>
+                                                
                                                 <h4 class="ad-title" style="color:#080808">{{ $ad->title }}</h4>
                                                 <p class="ad-subtitle" style="color:#101ee6;">{{ $ad->subtitle }}</p>
                                                 
@@ -71,7 +73,6 @@
                                                 <!-- Mostrar el video si hay una URL de video -->
                                                 @if ($ad->video_url)
                                                     <div class="embed-responsive embed-responsive-16by9">
-                                                       
                                                         <div class="responsive-video">
                                                             {!! $ad->video_url !!}
                                                         </div>
@@ -81,21 +82,16 @@
                                                 <!-- Resto del contenido del anuncio -->
 
                                                 <p class="ad-content" style="color:#080808;">{{ Str::limit($ad->content, 30) }} <a href="{{ route('ads.show', ['id' => $ad->id]) }}" class="text-primary">Read more</a></p>
-                                                <a href="{{ route('ads.index', ['category' => $ad->category]) }}" class="ad-category text-muted">
-                                                    <strong>Category:</strong> {{ ucfirst($ad->category) }}
-                                                </a>
-                                                
+                                               
                                                 @if (Auth::check() && Auth::user()->id === $ad->user_id)
                                                     <a href="{{ route('ads.edit', ['id' => $ad->id]) }}" class="btn btn-primary">Edit Ad</a>
                                                 @endif
                                                 <div class="d-flex justify-content-between align-items-center mt-3">
                                                     @auth
-                                                        
-                                                  
-                                                    <form class="like-form" action="{{ route('ads.like', ['id' => $ad->id]) }}" method="POST">
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-link like-button"><i class="fas fa-thumbs-up text-primary"></i></button>
-                                                    </form>
+                                                        <form class="like-form" action="{{ route('ads.like', ['id' => $ad->id]) }}" method="POST">
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-link like-button"><i class="fas fa-thumbs-up text-primary"></i></button>
+                                                        </form>
                                                     @endauth
                                                     <p class="ad-likes"><i class="fas fa-heart text-danger"></i> <span class="like-count">{{ $ad->likes_count }}</span></p>
                                                 </div>
@@ -112,168 +108,44 @@
                     </div>
                 </div>
             </div>
-         
-    <aside class="sidebar" style="margin-bottom: 2399px; margin-top: 2px;">
-        <H1 style="margin-top: 10px; font-size: 18px; ">DESTACADAS</H1>
-        <div class="latest-news">
-            @foreach ($latestAds as $ad)
+        </div>
+        <aside class="sidebar" style=" margin-top: 0px; background-color:#f39c12; border-radius: 10px; margin-right:10px;">
+            <H1 style="margin-top: 10px; font-size: 18px;">DESTACADO</H1>
+            <div class="latest-news">
+                @foreach ($latestAds as $ad)
                 <div class="news-item">
                     <a href="{{ route('ads.show', ['id' => $ad->id]) }}">
-                        <img src="{{ $ad->getImageUrl() }}" alt="{{ $ad->title }}">
-                        <p style="font-size: 10px;">{{ $ad->title }}</p>
+                        <img src="{{ $ad->getImageUrl() }}" alt="{{ $ad->title }}" style="width: 100%; height: auto;">
+                        <p style="font-size: 10px; color: white; ">{{ $ad->title }}</p>
                     </a>
                 </div>
-            @endforeach
-        </div>
-        
-    </aside>
-        </div>
-     
+                @endforeach
+            </div>
+        </aside>
     </div>
 
-    <style>
-        .container-outer {
+
+
+
+
+</x-layout>
+    
+        <style>
+           .container-outer {
             display: flex;
             justify-content: center; /* Centrar horizontalmente */
         }
 
         .container-inner {
-            flex: 1;
-            padding-right: 10px; /* Espacio entre el contenido principal y el aside */
-        }
-
-        .sidebar {
-            width: 25%;
-            background-color: rgba(245, 184, 229, 0.7);
-            color: white;
-            overflow: hidden; /* Evitar desbordamiento */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            padding: 10px;
-            border-radius: 10px;
-            
-        }
-
-        .latest-news {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2px;
-        }
-
-        .news-item {
-            position: relative;
-            width: 180px;
-            text-align: center;
-            overflow: hidden; /* Evitar desbordamiento de título */
-        }
-
-        .news-item img {
-            width: 100%;
-            height: auto;
-            object-fit: cover; /* Ajustar imagen al contenedor */
-            transition: transform 0.3s;
-        }
-
-        .news-item:hover img {
-            transform: scale(1.1); /* Zoom al hacer hover */
-        }
-
-        /* Estilos del título sobre la imagen */
-        .news-item p {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            margin: 0;
-            padding: 10px;
-            background-color: rgba(0, 0, 0, 0.7);
-            font-weight: bold;
-            font-size: 8px;
-            text-align: center;
-            transform: translateY(100%);
-            transition: transform 0.3s;
-        }
-
-        .news-item:hover p {
-            transform: translateY(0);
-        }
-        @media (max-width: 767.98px) {
-            .colored-box {
-                padding: 10px; /* Reduce el espacio interno en tamaños móviles */
-            }
-
-            .container-inner {
-                padding-right: 0; /* Elimina el espacio entre contenido principal y aside */
-            }
-
-            .sidebar {
-                margin-top: 20px; /* Agrega espacio entre el contenedor principal y el aside */
-                width: 100%; /* Ocupa todo el ancho en tamaños móviles */
-            }
-
-            .latest-news {
-                flex-direction: row; /* Cambia la dirección en tamaños móviles */
-                justify-content: space-between; /* Distribuye los elementos en el aside */
-                align-items: center;
-                gap: 10px; /* Espacio entre los elementos */
-                overflow-x: auto; /* Agrega desplazamiento horizontal si los elementos desbordan */
-                padding: 10px 0; /* Ajusta el espacio interno */
-            }
-
-            .news-item {
-                width: 100px; /* Ancho más pequeño para los elementos en el aside */
-                height: auto;
-                text-align: center;
-                overflow: hidden;
-            }
-
-            .news-item img {
-                width: 100%;
-                height: auto; /* Ajusta la altura automáticamente */
-                object-fit: cover;
-                transition: transform 0.3s;
-            }
-
-            .news-item:hover img {
-                transform: scale(1.1);
-            }
-
-            .news-item p {
-                position: relative;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                margin: 0;
-                padding: 5px;
-                background-color: rgba(0, 0, 0, 0.7);
-                font-weight: bold;
-                text-align: center;
-                transform: translateY(100%);
-                transition: transform 0.3s;
-                font-size: 10px; /* Tamaño de fuente más pequeño */
-            }
-
-            .news-item:hover p {
-                transform: translateY(0);
-            }
-
-           
-        .latest-news p{
-            flex-direction: row; /* Cambia la dirección en tamaños móviles */
-                justify-content: space-between; /* Distribuye los elementos en el aside */
-                align-items: center;
-                gap: 0px; /* Espacio entre los elementos */
-                overflow-x: auto; /* Agrega desplazamiento horizontal si los elementos desbordan */
-                padding: 10px 0; /* Ajusta el espacio interno */
-                "margin-bottom: -10px;
-        }
-
-        .asideimg {
-            height: 150px;
-            width: 150px;
-        }
-    
+        flex: 1;
+        max-width: 100%; /* Ajusta el ancho máximo del contenido principal */
+        padding-left: 10%;
     }
+
+        
+
+  
+
         
         .ad-card {
             border: 1px solid #ccc;
@@ -294,7 +166,7 @@
             background-color: #9b59b6;
             border-radius: 15px;
             box-sizing: border-box;
-            padding: 20px; /* Agrega un poco de espacio interno a la caja */
+            padding: 3px; /* Agrega un poco de espacio interno a la caja */
         }
 
         .card {
@@ -303,7 +175,7 @@
         }
 
         .card-body {
-            padding: 10px; /* Ajusta el padding interno de la card-body */
+            padding: 0px; /* Ajusta el padding interno de la card-body */
         }
 
                         .responsive-video {
@@ -349,5 +221,114 @@
         }
     }
 
-    </style>
-</x-layout>
+   
+    .sidebar {
+        flex-direction: column;
+        width: 36%;
+        height: 100%;
+        margin-top: 0px;
+        margin-left: -30px;
+    }
+
+    .latest-news {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.news-item {
+    position: relative;
+    width: 180px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.news-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.news-item:hover img {
+    transform: scale(1.1);
+}
+
+.news-item p {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    font-weight: bold;
+    font-size: 8px;
+    text-align: center;
+    transform: translateY(0); /* Cambiar a 0 para que el título siempre sea visible */
+    transition: transform 0.3s;
+}
+
+.news-item:hover p {
+    transform: translateY(100%); /* Cambiar a 100% para ocultar el título en hover */
+}
+
+/* Agrega estilos al título en hover */
+.news-item:hover p {
+    transform: translateY(100%); /* Oculta el título en hover */
+}
+
+.news-item:hover p:before {
+    content: "";
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: -1;
+}
+@media (max-width: 500px) {
+    .container-outer {
+            display: flex;
+            justify-content: center; /* Centrar horizontalmente */
+            width: 100%;
+        }
+        
+    .container-inner {
+        margin-right: 10px; 
+        padding-left: 0px;/* Reducir margen derecho entre el div de los anuncios y el aside */
+    }
+    
+    .sidebar {
+        margin-left: -30px; /* Reducir margen izquierdo del aside */
+    }
+}
+@media (min-width: 800px) {
+    .container-inner {
+        margin-right: -100px; 
+        margin-left: -90px;/* Reducir margen derecho entre el div de los anuncios y el aside */
+    }
+    
+    .sidebar {
+        margin-left: -100px; /* Reducir margen izquierdo del aside */
+    }
+
+    .sidebar {
+        margin-right: 10px; /* Reducir margen izquierdo del aside */
+    }
+}
+
+
+
+    
+  
+    
+       
+       
+       
+       
+       
+      

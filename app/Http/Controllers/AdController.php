@@ -85,10 +85,11 @@ class AdController extends Controller
     
     
     public function show($id)
-    { $latestAds = Ad::orderBy('created_at', 'desc')->take(10)->get();
-        $ad = Ad::findOrFail($id); // Buscar el anuncio por su ID
-        return view('ads.show', compact('ad', 'latestAds'));
+    {
+        $ad = Ad::findOrFail($id);
+        return view('ads.show', compact('ad'));
     }
+
     
 
     public function countNotVisibleAds()

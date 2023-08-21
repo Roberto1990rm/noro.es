@@ -2,18 +2,19 @@
     <div class="scroll-navbar animation-scroll" style="margin-top: -60px; color: pink; background-color: purple;">
         <ul>
             @foreach ($latestAds as $index => $ad)
-                <li class="{{ $index === 0 ? 'first-item' : '' }}" >
+                <li class="{{ $index === 0 ? 'first-item' : '' }}">
                     @php
-                    
                         $colors = ['#FF5733', '#33FF57', '#FFFFFF', '#FF33C7']; // Colores claros diferentes
                         $currentColor = $colors[$index % count($colors)];
                     @endphp
-                    <a style="color: {{ $currentColor }};" href="{{ route('ads.show', ['id' => $ad->id]) }}" class="{{ $index % 2 === 0 ? 'even-link' : 'odd-link' }}">"{{ $ad->title }}"</a>
+                    <a style="color: {{ $currentColor }};" href="{{ route('ads.show', ['id' => $ad->id]) }}" class="{{ $index % 2 === 0 ? 'even-link' : 'odd-link' }}">{{ $ad->title }}</a>
                     @if (!$loop->last) | @endif
                 </li>
             @endforeach
         </ul>
     </div>
+    
+    
     
     <style>
         /* Estilos de las cards */
@@ -105,7 +106,6 @@
                         $carouselImages = [
                             '1.jpg',
                             '2.jpg',
-                            '4.jpg',
                         ];
                     @endphp
                     @foreach ($carouselImages as $index => $image)
@@ -135,9 +135,10 @@
                             <div class="card-body text-center">
                                 <h4 class="ad-title">{{ $ad->title }}</h4>
                                 <h5 class="ad-subtitle">{{ $ad->subtitle }}</h5>
-                                @if ($ad->image)
-                                    <img src="{{ $ad->getImageUrl() }}" alt="{{ $ad->title }}" class="img-fluid ad-image" style="max-height: 200px;">
-                                @endif
+                                <a href="{{ route('ads.show', ['id' => $ad->id]) }}">
+                                    <img src="{{ $ad->getImageUrl() }}" alt="{{ $ad->title }}" style="width: 100%; height: auto;">
+                                    <p style="font-size: 10px; color: white; ">{{ $ad->title }}</p>
+                                </a>
                                 <p class="ad-content">{{ substr($ad->content, 0, 100) }} ... <a href="{{ route('ads.show', ['id' => $ad->id]) }}">Ver más</a></p>
                                 <p>Category: <a href="{{ route('ads.index', ['category' => $ad->category]) }}">{{ ucfirst($ad->category) }}</a></p>
                                 <p>Created at: {{ $ad->created_at }}</p>

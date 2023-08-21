@@ -16,7 +16,7 @@
   
     
     <x-navbar />
-    <div class="mt60px">
+    <div class="mt60px"> 
     {{$slot}}
     <script>
         document.addEventListener('DOMContentLoaded', function() {

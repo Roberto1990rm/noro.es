@@ -22,7 +22,7 @@
           @endguest
           <li class="list">
             <a href="/ads" style="color: black;">
-              <span class="text">Noticias</span>
+              <span class="text">Publicado</span>
               <span class="icon">
                 <img
                   src="https://res.cloudinary.com/dhvkfxxvo/image/upload/v1687763206/Catalogue_cpu1ic.svg"

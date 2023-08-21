@@ -204,4 +204,14 @@ body {
   100% {
       transform: translateX(-100%);
   }
+
+  
+}
+
+
+@media (max-width: 500px) {
+  /* Estilos para pantallas con menos de 500px de ancho */
+  .mb2000menos {
+      margin-bottom: -2440px;
+  }
 }

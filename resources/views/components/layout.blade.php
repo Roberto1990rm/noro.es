@@ -35,6 +35,8 @@
   </div>
     <x-footer />
     @vite(['resources/js/app.js'])
+
+
   
   
 

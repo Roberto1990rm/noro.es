@@ -23,6 +23,7 @@
             border-radius: 10px;
             transition: transform 0.3s, box-shadow 0.3s;
             background: linear-gradient(45deg, #deedae, #e0e0e0);
+            padding: -20px;
         }
 
         .card:hover {
@@ -34,7 +35,7 @@
         /* Estilos de las cards de anuncios */
         .ad-card {
             border: 1px solid #ccc;
-            padding: 15px; /* Ajusta el padding */
+            padding: 0px; /* Ajusta el padding */
             border-radius: 10px;
             transition: transform 0.3s, box-shadow 0.3s;
             background-color: #e74c3c;
@@ -67,7 +68,7 @@
 
         .ad-content {
             color: #080808;
-            margin: 5px 0; /* Ajusta los márgenes vertical y horizontal */
+            margin: 0px 0; /* Ajusta los márgenes vertical y horizontal */
         }
     </style>
 
@@ -125,7 +126,7 @@
             </div>
     </div>
 
-        <div class="container mt-4">
+        <div class="container mt-4" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
             <h1 class="text-center h1welcome">Últimas publicaciones</h1>
             <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
                 

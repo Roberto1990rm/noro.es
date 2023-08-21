@@ -35,6 +35,7 @@ Route::put('/ads/{id}', [AdController::class, 'update'])->name('ads.update');
 Route::get('/my-ads', [AdController::class, 'showMyAds'])->name('ads.show-my-ads');
 Route::delete('/ads/{id}', [AdController::class, 'destroy'])->name('ads.destroy');
 Route::post('/ads/{id}/like', [AdController::class, 'likeAd'])->name('ads.like');
+
 Route::post('/ads/{id}/comments', [AdController::class, 'storeComment'])->name('ads.comments.store');
 Route::delete('/ads/{ad_id}/comments/{comment_id}', [AdController::class, 'destroyComment'])->name('ads.comments.destroy');
 // routes/web.php

@@ -14,7 +14,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        $latestAds = Ad::orderBy('created_at', 'desc')->take(10)->get();
+        $latestAds = Ad::orderBy('created_at', 'desc')->take(6)->get();
     
         return view('welcome', compact('latestAds'));
     }

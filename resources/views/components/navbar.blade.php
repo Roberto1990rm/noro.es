@@ -1,5 +1,5 @@
 <body>
-  <div class="navcontainer">
+  <div class="navcontainer" style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
     <div class="navbody">
       <div class="navigation">
         <ul>

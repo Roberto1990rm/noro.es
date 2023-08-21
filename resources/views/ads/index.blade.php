@@ -13,10 +13,40 @@
             @endforeach
         </ul>
     </div>
+    <div class="category-buttons d-none d-md-flex">
+        <button class="btn btn-category" style="background-color: #FF5733;"><a href="{{ route('ads.index', ['category' => 'espana']) }}" class="category-link" style="background-color: #FF5733; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">España</a></button>
+        <button class="btn btn-category" style="background-color: #33FF57;"><a href="{{ route('ads.index', ['category' => 'inmigracion']) }}" class="category-link" style="background-color: #33FF57; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Fronteras abiertas</a></button>
+        <button class="btn btn-category" style="background-color: #FF33C7;"><a href="{{ route('ads.index', ['category' => 'europa']) }}" class="category-link" style="background-color: #FF33C7; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Europa</a></button>
+        <button class="btn btn-category" style="background-color: #9b59b6;"><a href="{{ route('ads.index', ['category' => 'internacional']) }}" class="category-link" style="background-color: #9b59b6; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Mundo</a></button>
+        <button class="btn btn-category" style="background-color: blue;"><a href="{{ route('ads.index', ['category' => 'politica']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Política</a></button>
+        <button class="btn btn-category" style="background-color: rgb(26, 255, 0);"><a href="{{ route('ads.index', ['category' => 'covid']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Covid 2.0</a></button>
+        <button class="btn btn-category" style="background-color: rgb(255, 98, 0);"><a href="{{ route('ads.index', ['category' => 'agenda2030']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Agenda2030</a></button>
+        <button class="btn btn-category" style="background-color:rgb(74, 149, 156);;"><a href="{{ route('ads.index', ['category' => 'lgtbiq+']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">LGTBIQ+</a></button>
+        <button class="btn btn-category" style="background-color: rgb(255, 0, 208);"><a href="{{ route('ads.index', ['category' => 'ideologia']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Ideología de género</a></button>
+        <button class="btn btn-category" style="background-color: rgb(255, 0, 47);"><a href="{{ route('ads.index', ['category' => 'corrupcion']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Corrupción</a></button>
+        <button class="btn btn-category" style="background-color: rgb(205, 199, 32);"><a href="{{ route('ads.index', ['category' => 'autoritarismo']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Autoritarismo</a></button>
+        <button class="btn btn-category" style="background-color: blue;"><a href="{{ route('ads.index', ['category' => 'alarmismo']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Alarmismo climática</a></button>
+    </div>
+    
+    
+    <div class="category-buttons d-flex d-md-none overflow-auto">
+        <button class="btn btn-category" style="background-color: #FF5733;"><a href="{{ route('ads.index', ['category' => 'espana']) }}" class="category-link" style="background-color: #FF5733; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">España</a></button>
+        <button class="btn btn-category" style="background-color: #33FF57;"><a href="{{ route('ads.index', ['category' => 'inmigracion']) }}" class="category-link" style="background-color: #33FF57; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Fronteras abiertas</a></button>
+        <button class="btn btn-category" style="background-color: #FF33C7;"><a href="{{ route('ads.index', ['category' => 'europa']) }}" class="category-link" style="background-color: #FF33C7; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Europa</a></button>
+        <button class="btn btn-category" style="background-color: #9b59b6;"><a href="{{ route('ads.index', ['category' => 'internacional']) }}" class="category-link" style="background-color: #9b59b6; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Mundo</a></button>
+        <button class="btn btn-category" style="background-color: blue;"><a href="{{ route('ads.index', ['category' => 'politica']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Política</a></button>
+        <button class="btn btn-category" style="background-color: rgb(26, 255, 0);"><a href="{{ route('ads.index', ['category' => 'covid']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Covid 2.0</a></button>
+        <button class="btn btn-category" style="background-color: rgb(255, 98, 0);"><a href="{{ route('ads.index', ['category' => 'agenda2030']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Agenda2030</a></button>
+        <button class="btn btn-category" style="background-color:rgb(74, 149, 156);;"><a href="{{ route('ads.index', ['category' => 'lgtbiq+']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">LGTBIQ+</a></button>
+        <button class="btn btn-category" style="background-color: rgb(255, 0, 208);"><a href="{{ route('ads.index', ['category' => 'ideologia']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Ideología de género</a></button>
+        <button class="btn btn-category" style="background-color: rgb(255, 0, 47);"><a href="{{ route('ads.index', ['category' => 'corrupcion']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Corrupción</a></button>
+        <button class="btn btn-category" style="background-color: rgb(205, 199, 32);"><a href="{{ route('ads.index', ['category' => 'autoritarismo']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Autoritarismo</a></button>
+        <button class="btn btn-category" style="background-color: blue;"><a href="{{ route('ads.index', ['category' => 'alarmismo']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Alarmismo climática</a></button>
+    </div>
     
     <div class="container-outer">
-        <div class="container-inner">
-            <div class="col-md-8 pb-5 colored-box" style="margin-right: 30px; margin-left:10px;">
+        <div class="container-inner me-0">
+            <div class="col-md-8 pb-5 colored-box" style="margin-right: 30px; margin-left:10px;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
                 <h1 class="mb-4">
                     @if ($selectedCategory)
                         {{ __('Lo último:') }} {{ ucfirst($selectedCategory) }} 
@@ -26,23 +56,26 @@
                 </h1>
                 <div class="card">
                     <div class="card-header bg-primary text-white">{{ __('Publicaciones') }}</div>
-                    <div class="card-body">
+                    <div class="card-body bgcolor" style="padding: 10px;">
                         <form action="{{ route('ads.index') }}" method="GET" class="mb-3">
-                            <label for="category" class="form-label">Filter by Category:</label>
+                            <label style="color:white;" for="category" class="form-label">Filtrar por Categoría:</label>
                             <div class="input-group">
                                 <select id="category" class="form-control @error('category') is-invalid @enderror" name="category" required>
                                     <option value="" disabled selected>{{ __('Select a category') }}</option>
-                                    <option value="nacional">{{ __('Nacional') }}</option>
-                                    <option value="internacional">{{ __('Internacional') }}</option>
-                                    <option value="politica">{{ __('Politica') }}</option>
-                                    <option value="economia">{{ __('Economia') }}</option>
-                                    <option value="tecnologia">{{ __('Tecnologia') }}</option>
-                                    <option value="moda">{{ __('Moda') }}</option>
-                                    <option value="cultura">{{ __('Cultura') }}</option>
-                                    <option value="entretenimiento">{{ __('Entretenimiento') }}</option>
-                                    <option value="ciencia">{{ __('Ciencia') }}</option>
-                                    <option value="motor">{{ __('Motor') }}</option>
+                                    <option value="espana">{{ __('España') }}</option>
+                                    <option value="inmigracion">{{ __('Fronteras abriertas') }}</option>
+                                    <option value="europa">{{ __('Europa') }}</option>
+                                    <option value="internacional">{{ __('Mundo') }}</option>
+                                    <option value="politica">{{ __('Política') }}</option>
+                                    <option value="covid">{{ __('Covid 2.0') }}</option>
+                                    <option value="agenda2030">{{ __('Agenda2030') }}</option>
+                                    <option value="lgtbiq+">{{ __('Lgtbiq+') }}</option>
+                                    <option value="ideologia">{{ __('Ideología de Género') }}</option>
+                                    <option value="corrupcion">{{ __('Corrupción') }}</option>
+                                    <option value="autoritarismo">{{ __('Autoritarismo') }}</option>
+                                    <option value="alarmismo">{{ __('Alarmismo Climático') }}</option>
                                 </select>
+                                
                                 <button type="submit" class="btn btn-primary">Apply Filter</button>
                             </div>
                         </form>
@@ -51,9 +84,9 @@
                             <a href="{{ route('ads.show-my-ads') }}" class="btn btn-secondary mb-3">View My Ads</a>
                         @endif
 
-                        <div class="card-body" style="text-align: center;">
+                        <div class="card-body" style="text-align: center; ">
                             <!-- Resto del contenido de la tarjeta -->
-                            <div class="row">
+                            <div class="row bgcolor" style="padding-top: 10px;"  >
                                 @foreach ($ads as $ad)
                                     <div class="col-md-6 mb-4">
                                         <div class="card ad-card">
@@ -90,7 +123,9 @@
                                                     @auth
                                                         <form class="like-form" action="{{ route('ads.like', ['id' => $ad->id]) }}" method="POST">
                                                             @csrf
-                                                            <button type="submit" class="btn btn-link like-button"><i class="fas fa-thumbs-up text-primary"></i></button>
+                                                            <button class="btn btn-link like-button" data-ad-id="{{ $ad->id }}">
+                                                                <i class="fas fa-thumbs-up text-primary"></i>
+                                                            </button>
                                                         </form>
                                                     @endauth
                                                     <p class="ad-likes"><i class="fas fa-heart text-danger"></i> <span class="like-count">{{ $ad->likes_count }}</span></p>
@@ -109,8 +144,36 @@
                 </div>
             </div>
         </div>
-        <aside class="sidebar" style=" margin-top: 0px; background-color:#f39c12; border-radius: 10px; margin-right:10px;">
-            <H1 style="margin-top: 10px; font-size: 18px;">DESTACADO</H1>
+        <aside class="sidebar" style=" margin-top: 0px; background-color:#aba2f7; border-radius: 10px; margin-right:10px;">
+            <div style="background-color: #1900ff">
+            <H1 style=" margin-top: 10px; font-size: 18px; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">DESTACADO</H1>
+        </div>
+            <div class="latest-news">
+                @foreach ($latestAds as $ad)
+                <div class="news-item">
+                    <a href="{{ route('ads.show', ['id' => $ad->id]) }}">
+                        <img src="{{ $ad->getImageUrl() }}" alt="{{ $ad->title }}" style="width: 100%; height: auto;">
+                        <p style="font-size: 10px; color: white; ">{{ $ad->title }}</p>
+                    </a>
+                </div>
+                @endforeach
+            </div>
+            <div style="background-color:  #ff004c">
+            <H1 style="margin-top: 10px; font-size: 18px; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">videos</H1>
+            </div>
+            <div class="latest-news">
+                @foreach ($latestAds as $ad)
+                <div class="news-item">
+                    <a href="{{ route('ads.show', ['id' => $ad->id]) }}">
+                        <img src="{{ $ad->getImageUrl() }}" alt="{{ $ad->title }}" style="width: 100%; height: auto;">
+                        <p style="font-size: 10px; color: white; ">{{ $ad->title }}</p>
+                    </a>
+                </div>
+                @endforeach
+            </div>
+            <div style="background-color:  #04ff00">
+            <H1 style="margin-top: 10px; font-size: 18px; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">ANUNCIANTES</H1>
+            </div>
             <div class="latest-news">
                 @foreach ($latestAds as $ad)
                 <div class="news-item">
@@ -151,7 +214,7 @@
             border: 1px solid #ccc;
             border-radius: 10px;
             transition: transform 0.3s, box-shadow 0.3s;
-            background: linear-gradient(45deg, #f39c12, #deebb5);
+            background: linear-gradient(45deg, #ffedf3, #fac3f4);
             color: white;
         }
 
@@ -199,7 +262,7 @@
                                                                 height: auto;
                                                             }
                                                             .animation-scroll ul {
-        animation: scrollAnimation 30s linear infinite; /* Ajusta la velocidad (30s) según lo necesario */
+        animation: scrollAnimation 15s linear infinite; /* Ajusta la velocidad (30s) según lo necesario */
         white-space: nowrap; /* Evita el ajuste de línea */
         overflow: hidden; /* Oculta el desbordamiento */
         margin: 0; /* Elimina el margen de la lista */
@@ -290,7 +353,7 @@
     background: rgba(0, 0, 0, 0.7);
     z-index: -1;
 }
-@media (max-width: 500px) {
+@media (max-width: 600px) {
     .container-outer {
             display: flex;
             justify-content: center; /* Centrar horizontalmente */
@@ -309,7 +372,7 @@
 @media (min-width: 800px) {
     .container-inner {
         margin-right: -100px; 
-        margin-left: -90px;/* Reducir margen derecho entre el div de los anuncios y el aside */
+        margin-left: -100px;/* Reducir margen derecho entre el div de los anuncios y el aside */
     }
     
     .sidebar {
@@ -317,11 +380,47 @@
     }
 
     .sidebar {
-        margin-right: 10px; /* Reducir margen izquierdo del aside */
+        margin-right: 100px; /* Reducir margen izquierdo del aside */
+    }
+}
+
+.category-buttons {
+    margin-top: -18px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 15px 0;
+}
+
+.btn-category {
+    flex: 1;
+    padding: 10px 0;
+    border: none;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s;
+}
+
+.btn-category:hover {
+    opacity: 0.8;
+}
+
+@media (max-width: 500px) {
+    .btn-category {
+        flex-basis: calc(50% - 10px);
+    }
+
+    .btnnone{
+        display: none;
     }
 }
 
 
+</style>
 
     
   

@@ -21,7 +21,7 @@ class AdController extends Controller
             'title' => 'required|string|max:255',
             'subtitle' => 'nullable|string|max:255',
             'content' => 'required|string',
-            'category' => 'required|in:nacional,internacional,politica,economia,tecnologia,moda,cultura,entretenimiento,ciencia,motor',
+            'category' => 'required|in:espana,internacional,politica,covid,agenda2030,lgtbiq+,ideologia,corrupcion,autoritarismo,alarmismo,inmigracion,europa',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'video_url' => 'nullable',
             'related_images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Add validation for related images

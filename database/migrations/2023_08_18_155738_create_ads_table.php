@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('image')->nullable(); // Ruta de la imagen relacionada (opcional)
             $table->enum('category', [
                 'espana' => 'España',
-                'internacional' => 'Mundo',
+                'internacional' => 'Internacional',
                 'politica' => 'Política',
                 'covid' => 'Covid 2.0',
                 'agenda2030' => 'Agenda2030',

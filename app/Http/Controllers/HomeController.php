@@ -7,21 +7,16 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
-        $latestAds = Ad::orderBy('created_at', 'desc')->take(6)->get();
+        $latestAds = Ad::orderBy('created_at', 'desc')->take(3)->get();
     
         return view('welcome', compact('latestAds'));
     }
-    
-    
+}
+
     
 
 
    
-}
+

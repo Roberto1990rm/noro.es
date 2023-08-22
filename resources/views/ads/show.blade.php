@@ -41,7 +41,7 @@
                         </div>
                         <p class="ad-subtitle text-muted">{{ $ad->subtitle }}</p>
                         <p class="ad-category text-primary"><strong>Category:</strong> {{ ucfirst($ad->category) }}</p>
-                        <div class="ad-content mb-4" style="text-align: justify;">{{ $ad->content }}</div>
+                        <div class="ad-content mb-4" style="text-align: center;">{{ $ad->content }}</div>
                         <p class="text-muted"><strong>Published at:</strong> {{ $ad->created_at }}</p>
                         @if ($ad->user)
                             <p class="text-muted"><strong>Created by:</strong> {{ $ad->user->name }}</p>

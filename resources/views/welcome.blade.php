@@ -72,60 +72,6 @@
         }
     </style>
 
-
-    <div class="mt-4">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header bg-primary text-white">{{ __('Dashboard') }}</div>
-
-                        <div class="card-body">
-                            @if (session('status'))
-                                <div class="alert alert-success" role="alert">
-                                    {{ session('status') }}
-                                </div>
-                            @endif
-
-                            <h2 class="mb-4">Welcome, {{ Auth::user()->name }}!</h2>
-                            <p>{{ __('You are logged in!') }}</p>
-
-                            <div class="mt-4">
-                                <h4>Your Dashboard Content</h4>
-                                <p>This is where you can manage your profile and ads.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div id="imageCarousel" class="carousel slide mt-4" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    @php
-                        $carouselImages = [
-                            '1.jpg',
-                            '2.jpg',
-                        ];
-                    @endphp
-                    @foreach ($carouselImages as $index => $image)
-                        <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                            <img src="{{ asset('images/' . $image) }}" class="d-block w-100" alt="Image {{ $index + 1 }}">
-                        </div>
-                    @endforeach
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-    </div>
-
         <div class="container mt-4" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
             <h1 class="text-center h1welcome">Últimas publicaciones</h1>
             <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
@@ -134,14 +80,15 @@
                     <div class="col mb-3">
                         <div class="card ad-card">
                             <div class="card-body text-center">
+                                <p>Category: <a href="{{ route('ads.index', ['category' => $ad->category]) }}">{{ ucfirst($ad->category) }}</a></p>
                                 <h4 class="ad-title">{{ $ad->title }}</h4>
                                 <h5 class="ad-subtitle">{{ $ad->subtitle }}</h5>
                                 <a href="{{ route('ads.show', ['id' => $ad->id]) }}">
                                     <img src="{{ $ad->getImageUrl() }}" alt="{{ $ad->title }}" style="width: 100%; height: auto;">
                                     <p style="font-size: 10px; color: white; ">{{ $ad->title }}</p>
                                 </a>
-                                <p class="ad-content">{{ substr($ad->content, 0, 100) }} ... <a href="{{ route('ads.show', ['id' => $ad->id]) }}">Ver más</a></p>
-                                <p>Category: <a href="{{ route('ads.index', ['category' => $ad->category]) }}">{{ ucfirst($ad->category) }}</a></p>
+                                <p class="ad-content mb-1">{{ substr($ad->content, 0, 100) }} ... <a href="{{ route('ads.show', ['id' => $ad->id]) }}">Ver más</a></p>
+                                
                                 <p>Created at: {{ $ad->created_at }}</p>
                             </div>
                         </div>
@@ -154,4 +101,30 @@
             @endif
         </div>
     </div>
+
+    <div class="container">
+        <div id="imageCarousel" class="carousel slide mt-4" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                @php
+                    $carouselImages = [
+                        '1.jpg',
+                        '2.jpg',
+                    ];
+                @endphp
+                @foreach ($carouselImages as $index => $image)
+                    <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                        <img src="{{ asset('images/' . $image) }}" class="d-block w-100" alt="Image {{ $index + 1 }}">
+                    </div>
+                @endforeach
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+</div>
 </x-layout>

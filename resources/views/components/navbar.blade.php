@@ -20,7 +20,7 @@
             </a>
           </li>
           @endguest
-          <li class="list">
+          <li class="list" style="display: none;">
             <a href="/ads" style="color: black;">
               <span class="text">Publicado</span>
               <span class="icon">

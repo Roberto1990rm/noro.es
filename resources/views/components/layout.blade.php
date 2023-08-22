@@ -11,6 +11,7 @@
     <script src="{{ asset('js/a.js') }}"></script>
     <link href="{{ asset('css/globalstyles.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+ 
   </head>
   <body>
   
@@ -32,6 +33,7 @@
             });
         });
     </script>
+ 
   </div>
     <x-footer />
     @vite(['resources/js/app.js'])
@@ -40,6 +42,5 @@
   
   
 
-    
   </body>
   

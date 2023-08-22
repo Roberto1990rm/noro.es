@@ -4,7 +4,7 @@
             @foreach ($latestAds as $index => $ad)
                 <li class="{{ $index === 0 ? 'first-item' : '' }}">
                     @php
-                        $colors = ['#FF5733', '#33FF57', '#FFFFFF', '#FF33C7']; // Colores claros diferentes
+                        $colors = ['#FF5733', '#33FF57', '#FFFFFF', '#FF33C7'];
                         $currentColor = $colors[$index % count($colors)];
                     @endphp
                     <a style="color: {{ $currentColor }};" href="{{ route('ads.show', ['id' => $ad->id]) }}" class="{{ $index % 2 === 0 ? 'even-link' : 'odd-link' }}">{{ $ad->title }}</a>
@@ -13,8 +13,6 @@
             @endforeach
         </ul>
     </div>
-    
-    
     
     <style>
         /* Estilos de las cards */
@@ -35,10 +33,11 @@
         /* Estilos de las cards de anuncios */
         .ad-card {
             border: 1px solid #ccc;
-            padding: 0px; /* Ajusta el padding */
+            padding: 10px;
             border-radius: 10px;
             transition: transform 0.3s, box-shadow 0.3s;
             background-color: #e74c3c;
+            margin: 10px;
         }
 
         .ad-card:hover {
@@ -51,64 +50,165 @@
         .ad-title {
             color: #080808;
             font-size: 1.25rem;
-            margin: 5px 0; /* Ajusta los márgenes vertical y horizontal */
+            margin: 5px 0;
         }
 
         .ad-subtitle {
             color: #101ee6;
             font-size: 1rem;
-            margin: 5px 0; /* Ajusta los márgenes vertical y horizontal */
+            margin: 5px 0;
         }
 
         .ad-image {
             max-height: 200px;
             width: 100%;
-            margin-bottom: 10px; /* Ajusta el margen inferior */
+            margin-bottom: 10px;
         }
 
         .ad-content {
             color: #080808;
-            margin: 0px 0; /* Ajusta los márgenes vertical y horizontal */
+            margin: 0px 0;
         }
+
+        @media (max-width: 767px) {
+            .row-cols-md-2 .col {
+                flex-basis: 50%;
+                max-width: 50%;
+            }
+        }
+
+
+        .embed-responsive .responsive-video {
+    position: relative;
+    padding-bottom: 56.25%; /* Maintain the aspect ratio of 16:9 */
+    height: 0;
+    overflow: hidden;
+}
+
+.embed-responsive .responsive-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    border: 0; /* Remove border for the iframe */
+}
     </style>
 
-        <div class="container mt-4" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
-            <h1 class="text-center h1welcome">Últimas publicaciones</h1>
-            <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
+<div class="container-outer">
+        
+    <div class="container-inner">
+        <div class="row">
+            <div class="col-md-8 pb-5 colored-box">
+            
                 
-                @foreach ($latestAds as $ad)
-                    <div class="col mb-3">
-                        <div class="card ad-card">
-                            <div class="card-body text-center">
-                                <p>Category: <a href="{{ route('ads.index', ['category' => $ad->category]) }}">{{ ucfirst($ad->category) }}</a></p>
-                                <h4 class="ad-title">{{ $ad->title }}</h4>
-                                <h5 class="ad-subtitle">{{ $ad->subtitle }}</h5>
-                                <a href="{{ route('ads.show', ['id' => $ad->id]) }}">
-                                    <img src="{{ $ad->getImageUrl() }}" alt="{{ $ad->title }}" style="width: 100%; height: auto;">
-                                    <p style="font-size: 10px; color: white; ">{{ $ad->title }}</p>
-                                </a>
-                                <p class="ad-content mb-1">{{ substr($ad->content, 0, 100) }} ... <a href="{{ route('ads.show', ['id' => $ad->id]) }}">Ver más</a></p>
-                                
-                                <p>Created at: {{ $ad->created_at }}</p>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
+            <h1 class="mb-4">
+                @if ($selectedCategory)
+                    {{ __('Lo último:') }} {{ ucfirst($selectedCategory) }} 
+                @else
+                    {{ __('Novedades') }}
+                @endif
+            </h1>
+            <div class="search-form" style="display: flex; justify-content: center; margin-bottom: 5px;">
+                <form action="{{ route('ads.index') }}" method="GET">
+                    <input type="text" name="search" placeholder="Buscar anuncios...">
+                    <button type="submit">Buscar</button>
+                </form>
             </div>
+            <div class="card ad-container">
+                <!-- ... Resto del contenido ... -->
+                <div class="card-body bgcolor" style="padding: 10px;">
+                    <!-- ... Resto del contenido ... -->
+                    <div class="card-body" style="text-align: center; ">
+                        <div class="row bgcolor" style="padding-top: 10px;"  >
+                            @foreach ($ads as $ad)
+                                <div class="col-md-6 mb-4">
+                                    <div class="ad-container">
+                                        <a href="{{ route('ads.index', ['category' => $ad->category]) }}" class="ad-category text-muted">
+                                            <strong>Category:</strong> {{ ucfirst($ad->category) }}
+                                        </a>
+                                        
+                                        <h4 class="ad-title" style="color:#080808">{{ $ad->title }}</h4>
+                                        <p class="ad-subtitle" style="color:#101ee6;">{{ $ad->subtitle }}</p>
+                                        
+                                    <div class="carousel slide mb-3" data-bs-ride="carousel">
+                                        <div class="carousel-inner">
+                                            @if ($ad->video_url)
+                                                <div class="carousel-item active">
+                                                    <div class="embed-responsive embed-responsive-16by9">
+                                                        <div class="responsive-video">
+                                                            {!! $ad->video_url !!}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        
+                                            @if (!$ad->video_url && $ad->image)
+                                                <div class="carousel-item active"> <!-- Cambia "active" a "carousel-item" -->
+                                                    <img src="{{ $ad->getImageUrl() }}" alt="{{ $ad->image }}" class="img-fluid ad-image mb-3" style="max-height: 200px; width: 100%;">
+                                                </div>
+                                            @endif
+    
+    @foreach ($ad->relatedImages as $relatedImage)
+        <div class="carousel-item">
+            <img src="{{ asset('storage/' . $relatedImage->image_path) }}" alt="{{ $ad->title }}" class="img-fluid ad-image mb-3" style="max-height: 200px; width: 100%;">
+        </div>
+    @endforeach
+  <button class="carousel-control-prev" type="button" data-bs-target="#carousel-{{ $ad->id }}" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+</button>
+<button class="carousel-control-next" type="button" data-bs-target="#carousel-{{ $ad->id }}" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+</button>
+</div>
 
-            @if ($latestAds->isEmpty())
-                <p class="text-center">No latest ads available.</p>
-            @endif
+
+</div>
+
+
+
+                                        <p class="ad-content" style="color:#080808;">{{ Str::limit($ad->content, 30) }} <a href="{{ route('ads.show', ['id' => $ad->id]) }}" class="text-primary">Read more</a></p>
+                                       
+                                        @if (Auth::check() && Auth::user()->id === $ad->user_id)
+                                            <a href="{{ route('ads.edit', ['id' => $ad->id]) }}" class="btn btn-primary">Edit Ad</a>
+                                        @endif
+                                        <div class="d-flex justify-content-between align-items-center mt-3">
+                                            @auth
+                                                <form class="like-form" action="{{ route('ads.like', ['id' => $ad->id]) }}" method="POST">
+                                                    @csrf
+                                                    <button class="btn btn-link like-button" data-ad-id="{{ $ad->id }}">
+                                                        <i class="fas fa-thumbs-up text-primary"></i>
+                                                    </button>
+                                                </form>
+                                            @endauth
+                                            <p class="ad-likes"><i class="fas fa-heart text-danger"></i> <span class="like-count">{{ $ad->likes_count }}</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+
+                        @if ($ads->isEmpty())
+                            <p class="text-muted">No ads available.</p>
+                        @endif
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+</div>
 
-    <div class="container">
+    <div class="container" style="margin-top: -40px;">
         <div id="imageCarousel" class="carousel slide mt-4" data-bs-ride="carousel">
             <div class="carousel-inner">
                 @php
                     $carouselImages = [
+                        '4.jpg',
                         '1.jpg',
                         '2.jpg',
+                        
                     ];
                 @endphp
                 @foreach ($carouselImages as $index => $image)
@@ -126,5 +226,5 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-</div>
+    </div>
 </x-layout>

@@ -6,7 +6,7 @@
                 <p>Esta plataforma nace para dar voz a temas marginados por la corrupción mediática y política, buscando destacar lo subyacente y relevante que a menudo se pasa por alto.</p>
             </div>
             <div class="col-md-4">
-                <h4>Categories</h4>
+                <h4>Categorías</h4>
                 <ul class="list-unstyled">
                     <li><a href="{{ route('ads.index', ['category' => 'espana']) }}">España</a></li>
                     <li><a href="{{ route('ads.index', ['category' => 'Agenda2030']) }}">Agenda2030</a></li>
@@ -16,7 +16,7 @@
                 </ul>
             </div>
             <div class="col-md-4">
-                <h4>Contact Us</h4>
+                <h4>Contacta con nosotros</h4>
                 <p>Email: beanroka@gmail.com</p>
             </div>
         </div>

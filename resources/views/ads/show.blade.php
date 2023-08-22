@@ -22,19 +22,30 @@
 
                     <div class="card-body">
                         <h2 class="mb-3">{{ $ad->title }}</h2>
-                        <div id="imageCarousel" class="carousel slide mb-3" data-bs-ride="carousel">
+                        <div id="carousel-{{ $ad->id }}" class="carousel slide mb-3" data-bs-ride="carousel">
                             <div class="carousel-inner">
-                                @foreach ($ad->relatedImages as $index => $relatedImage)
-                                    <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                                        <img src="{{ asset('storage/' . $relatedImage->image_path) }}" alt="Related Image" class="d-block w-100 img-fluid ad-image">
+                                <div class="carousel-item active">
+                                    <img src="{{ $ad->getImageUrl() }}" alt="{{ $ad->title }}"style="width: 100%; height: auto;">
+                                </div>
+                                
+                                @foreach ($ad->relatedImages as $relatedImage)
+                                    <div class="carousel-item">
+                                        <img src="{{ asset('storage/' . $relatedImage->image_path) }}" alt="{{ $ad->title }}" style="width: 100%; height:auto;">
                                     </div>
                                 @endforeach
+                                @if ($ad->video_url)
+                                <div class="ad-media carousel-item" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                                        {!! $ad->video_url !!}
+                                    </div>
+                                </div>
+                            @endif
                             </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-{{ $ad->id }}" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Previous</span>
                             </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+                            <button class="carousel-control-next" type="button" data-bs-target="#carousel-{{ $ad->id }}" data-bs-slide="next">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Next</span>
                             </button>

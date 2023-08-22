@@ -31,13 +31,15 @@
 
                             <div class="form-group">
                                 <label for="content">{{ __('Content') }}</label>
-                                <textarea id="content" class="form-control @error('content') is-invalid @enderror" name="content" required>{{ old('content') }}</textarea>
+                                <textarea id="content" class="form-control @error('content') is-invalid @enderror" name="content" required>{!! old('content') !!}</textarea>
                                 @error('content')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
+                            
+                            
 
                             <div class="form-group">
                                 <label for="category">{{ __('Category') }}</label>

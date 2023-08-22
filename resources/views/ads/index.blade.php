@@ -74,17 +74,42 @@
                                             <h4 class="ad-title" style="color:#080808">{{ $ad->title }}</h4>
                                             <p class="ad-subtitle" style="color:#101ee6;">{{ $ad->subtitle }}</p>
                                             
-                                            @if (!$ad->video_url && $ad->image)
-                                                <img src="{{ $ad->getImageUrl() }}" alt="{{ $ad->title }}" class="img-fluid ad-image mb-3" style="max-height: 200px; width: 100%;">
-                                            @endif
+                                        <div class="carousel slide mb-3" data-bs-ride="carousel">
+                                            <div class="carousel-inner">
+                                                @if ($ad->video_url)
+                                                    <div class="carousel-item active">
+                                                        <div class="embed-responsive embed-responsive-16by9">
+                                                            <div class="responsive-video">
+                                                                {!! $ad->video_url !!}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                            
+                                                @if (!$ad->video_url && $ad->image)
+                                                    <div class="carousel-item active"> <!-- Cambia "active" a "carousel-item" -->
+                                                        <img src="{{ $ad->getImageUrl() }}" alt="{{ $ad->image }}" class="img-fluid ad-image mb-3" style="max-height: 200px; width: 100%;">
+                                                    </div>
+                                                @endif
+        
+        @foreach ($ad->relatedImages as $relatedImage)
+            <div class="carousel-item">
+                <img src="{{ asset('storage/' . $relatedImage->image_path) }}" alt="{{ $ad->title }}" class="img-fluid ad-image mb-3" style="max-height: 200px; width: 100%;">
+            </div>
+        @endforeach
+      <button class="carousel-control-prev" type="button" data-bs-target="#carousel-{{ $ad->id }}" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carousel-{{ $ad->id }}" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
     
-                                            @if ($ad->video_url)
-                                            <div class="embed-responsive embed-responsive-16by9">
-                                                <div class="responsive-video">
-                                                    {!! $ad->video_url !!}
-                                                </div>
-                                            </div>
-                                        @endif
+   
+</div>
+
     
     
                                             <p class="ad-content" style="color:#080808;">{{ Str::limit($ad->content, 30) }} <a href="{{ route('ads.show', ['id' => $ad->id]) }}" class="text-primary">Read more</a></p>
@@ -119,11 +144,45 @@
     </div>
     <aside class="sidebar">
                 <div class="latest-news">
-                    <h2><b>DESTACADO</b></h2>
+                    <h2 style="margin-bottom: -2px;width: 100%; background-color: rgb(16, 239, 235); display:flex; justify-content: center;"><b>DESTACADO</b></h2>
                     @foreach ($latestAds as $ad)
                         <div class="news-item">
                             <a href="{{ route('ads.show', ['id' => $ad->id]) }}">
-                                <img src="{{ $ad->getImageUrl() }}" alt="{{ $ad->title }}" style="width: 100%; height: auto;">
+                                <div id="carousel-{{ $ad->id }}" class="carousel slide mb-3" data-bs-ride="carousel">
+                                    <div class="carousel-inner">
+                                        @if ($ad->video_url)
+                                            <div class="carousel-item active">
+                                                <div class="embed-responsive embed-responsive-16by9">
+                                                    <div class="responsive-video">
+                                                        {!! $ad->video_url !!}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                
+                                        @if ($ad->image)
+                                            <div class="carousel-item {{ $ad->video_url ? '' : 'active' }}">
+                                                <img src="{{ $ad->getImageUrl() }}" alt="{{ $ad->title }}" class="img-fluid ad-image mb-3" style="max-height: 200px; width: 100%;">
+                                            </div>
+                                        @endif
+                                
+                                        @foreach ($ad->relatedImages as $relatedImage)
+                                            <div class="carousel-item">
+                                                <img src="{{ asset('storage/' . $relatedImage->image_path) }}" alt="{{ $ad->title }}" class="img-fluid ad-image mb-3" style="max-height: 200px; width: 100%;">
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel-{{ $ad->id }}" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#carousel-{{ $ad->id }}" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
+                                
                                 <p style="font-size: 10px; color: white; ">{{ $ad->title }}</p>
                             </a>
                         </div>
@@ -156,7 +215,41 @@
                 @foreach ($latestAds as $ad)
                 <div class="news-item">
                     <a href="{{ route('ads.show', ['id' => $ad->id]) }}">
-                        <img src="{{ $ad->getImageUrl() }}" alt="{{ $ad->title }}" style="width: 100%; height: auto;">
+                        <div id="carousel-{{ $ad->id }}" class="carousel slide mb-3" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                @if ($ad->video_url)
+                                    <div class="carousel-item active">
+                                        <div class="embed-responsive embed-responsive-16by9">
+                                            <div class="responsive-video">
+                                                {!! $ad->video_url !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                        
+                                @if ($ad->image)
+                                    <div class="carousel-item {{ $ad->video_url ? '' : 'active' }}">
+                                        <img src="{{ $ad->getImageUrl() }}" alt="{{ $ad->title }}" class="img-fluid ad-image mb-3" style="max-height: 200px; width: 100%;">
+                                    </div>
+                                @endif
+                        
+                                @foreach ($ad->relatedImages as $relatedImage)
+                                    <div class="carousel-item">
+                                        <img src="{{ asset('storage/' . $relatedImage->image_path) }}" alt="{{ $ad->title }}" class="img-fluid ad-image mb-3" style="max-height: 200px; width: 100%;">
+                                    </div>
+                                @endforeach
+                            </div>
+                        
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-{{ $ad->id }}" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carousel-{{ $ad->id }}" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                        
                         <p style="font-size: 10px; color: white; ">{{ $ad->title }}</p>
                     </a>
                 </div>

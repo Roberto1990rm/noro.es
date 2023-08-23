@@ -38,7 +38,7 @@
         <button class="btn btn-category" style="background-color: rgb(205, 199, 32);"><a href="{{ route('ads.index', ['category' => 'autoritarismo']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Autoritarismo</a></button>
     </div>
     
-    <div class="container-outer">
+    <div class="container-outer"  style="margin-left: 10px;">
         
         <div class="container-inner">
             <div class="row">
@@ -49,7 +49,7 @@
                     @if ($selectedCategory)
                         {{ __('Lo último:') }} {{ ucfirst($selectedCategory) }} 
                     @else
-                        {{ __('Novedades') }}
+                        {{ __('Publicado') }}
                     @endif
                 </h1>
                 <div class="search-form" style="display: flex; justify-content: center; margin-bottom: 5px;">
@@ -74,8 +74,8 @@
                                             <h4 class="ad-title" style="color:#080808">{{ $ad->title }}</h4>
                                             <p class="ad-subtitle" style="color:#101ee6;">{{ $ad->subtitle }}</p>
                                             
-                                        <div class="carousel slide mb-3" data-bs-ride="carousel">
-                                            <div class="carousel-inner">
+                                            <div id="carousel-{{ $ad->id }}-{{ $index }}" class="carousel slide mb-3" data-bs-ride="carousel">
+                                                <div class="carousel-inner">
                                                 @if ($ad->video_url)
                                                     <div class="carousel-item active">
                                                         <div class="embed-responsive embed-responsive-16by9">
@@ -92,19 +92,21 @@
                                                     </div>
                                                 @endif
         
-        @foreach ($ad->relatedImages as $relatedImage)
-            <div class="carousel-item">
-                <img src="{{ asset('storage/' . $relatedImage->image_path) }}" alt="{{ $ad->title }}" class="img-fluid ad-image mb-3" style="max-height: 200px; width: 100%;">
-            </div>
-        @endforeach
-      <button class="carousel-control-prev" type="button" data-bs-target="#carousel-{{ $ad->id }}" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carousel-{{ $ad->id }}" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
+                                                @foreach ($ad->relatedImages as $relatedImage)
+                                                <div class="carousel-item">
+                                                    <div class="d-flex justify-content-center align-items-center">
+                                                        <<img src="{{ asset('storage/' . $relatedImage->image_path) }}" alt="{{ $ad->title }}" class="img-fluid ad-image mb-3" style="max-height: 200px; width: 100%;">
+                                                    </div>
+                                                </div>
+                                                @endforeach
+         <button class="carousel-control-prev" type="button" data-bs-target="#carousel-{{ $ad->id }}-{{ $index }}" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carousel-{{ $ad->id }}-{{ $index }}" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
 </div>
     
    
@@ -144,7 +146,7 @@
     </div>
     <aside class="sidebar">
                 <div class="latest-news">
-                    <h2 style="margin-bottom: -2px;width: 100%; background-color: rgb(16, 239, 235); display:flex; justify-content: center;"><b>DESTACADO</b></h2>
+                    <h2 style=";border-radius:10px;margin-top:0px;margin-bottom: -2px;width: 100%; background-color: rgb(16, 239, 235); display:flex; justify-content: center;"><b>DESTACADO</b></h2>
                     @foreach ($latestAds as $ad)
                         <div class="news-item">
                             <a href="{{ route('ads.show', ['id' => $ad->id]) }}">
@@ -208,8 +210,8 @@
     @endforeach
 </div>
 
-            <div style="background-color:  #04ff00">
-            <H1 style="margin-top: 10px; font-size: 18px; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">ANUNCIANTES</H1>
+            <div style="background-color:  #ff00fb">
+            <H1 style="margin-top: 10px; font-size: 18px; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">Publicidad</H1>
             </div>
             <div class="latest-news">
                 @foreach ($latestAds as $ad)
@@ -330,10 +332,8 @@
 
 
   
-@media (min-width: 800px) {
-  .sidebar{
-    margin-left: -300px;
-  }
+
+ 
 
 }
 
@@ -341,6 +341,10 @@
 @media (min-width: 800px) {
   .sidebar{
     margin-left: -200px;
+  }
+
+  .container-outer{
+    margin-left: 200px;
   }
 
 }

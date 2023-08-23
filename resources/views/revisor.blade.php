@@ -46,6 +46,13 @@
                     @endforeach
                 </tbody>
             </table>
+            
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center pagination-custom"> <!-- Agrega la clase "pagination-custom" -->
+                {{ $ads->links() }} <!-- Mostrará los enlaces de paginación -->
+            </ul>
+        </nav>
+            
         </div>
     </div>
 </x-layout>

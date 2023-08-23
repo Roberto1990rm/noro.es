@@ -243,3 +243,6 @@ body {
   overflow-x: auto; /* Agrega un scroll horizontal si el contenido desborda */
   max-width: 100%; /* Asegura que el contenedor no desborde del contenedor padre */
 }
+
+
+

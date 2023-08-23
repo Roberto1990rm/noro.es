@@ -13,7 +13,17 @@
             @endforeach
         </ul>
     </div>
-    
+    <div class="info-strip" style="background-color: black; height: 40px; padding-top:10px;">
+    <marquee behavior="scroll" direction="right" scrollamount="5">
+        @php
+            $colors = ['#FF5733', '#33FF57', '#FFFFFF', '#FF33C7'];
+        @endphp
+        @foreach ($colors as $color)
+            <span class="info-text" style="color: {{ $color }};">Bienvenidos a Noro News</span>
+        @endforeach
+    </marquee>
+</div>
+
 
 <div class="container-outer">
     <div class="container-inner">
@@ -23,7 +33,7 @@
 
                 <div class="search-form" style="display: flex; justify-content: center; margin-top: 10px; margin-bottom: 20px;">
                     <form action="{{ route('ads.index') }}" method="GET">
-                        <input type="text" name="search" placeholder="Buscar anuncios...">
+                        <input type="text" name="search" placeholder="Buscar publicación...">
                         <button type="submit">Buscar</button>
                     </form>
                 </div>
@@ -128,7 +138,7 @@
             @endphp
             @foreach ($carouselImages as $index => $image)
                 <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                    <img  src="{{ asset('images/' . $image) }}" class="d-block w-100" style="object-fit: cover; max-height: 1100px;" alt="Image {{ $index + 1 }}">
+                    <img  src="{{ asset('images/' . $image) }}" class="d-block w-100" style="object-fit: cover; max-height: 100%;" alt="Image {{ $index + 1 }}">
                 </div>
             @endforeach
         </div>

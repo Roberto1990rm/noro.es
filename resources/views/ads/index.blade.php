@@ -15,27 +15,27 @@
     </div>
     <div class="category-buttons d-none d-md-flex">
         <button class="btn btn-category" style="background-color: #FF5733;"><a href="{{ route('ads.index', ['category' => 'espana']) }}" class="category-link" style="background-color: #FF5733; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">España</a></button>
-        <button class="btn btn-category" style="background-color: #33FF57;"><a href="{{ route('ads.index', ['category' => 'inmigracion']) }}" class="category-link" style="background-color: #33FF57; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Fronteras abiertas</a></button>
+        <button class="btn btn-category" style="background-color: #33FF57;"><a href="{{ route('ads.index', ['category' => 'inmigracion']) }}" class="category-link" style="background-color: #33FF57; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Inmigración</a></button>
         <button class="btn btn-category" style="background-color: #FF33C7;"><a href="{{ route('ads.index', ['category' => 'europa']) }}" class="category-link" style="background-color: #FF33C7; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Europa</a></button>
         <button class="btn btn-category" style="background-color: #9b59b6;"><a href="{{ route('ads.index', ['category' => 'internacional']) }}" class="category-link" style="background-color: #9b59b6; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Internacional</a></button>
         <button class="btn btn-category" style="background-color: blue;"><a href="{{ route('ads.index', ['category' => 'politica']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Política</a></button>
         <button class="btn btn-category" style="background-color: rgb(255, 98, 0);"><a href="{{ route('ads.index', ['category' => 'agenda2030']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Agenda2030</a></button>
         <button class="btn btn-category" style="background-color:rgb(74, 149, 156);;"><a href="{{ route('ads.index', ['category' => 'lgtbiq+']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">LGTBIQ+</a></button>
         <button class="btn btn-category" style="background-color: rgb(255, 0, 47);"><a href="{{ route('ads.index', ['category' => 'corrupcion']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Corrupción</a></button>
-        <button class="btn btn-category" style="background-color: rgb(205, 199, 32);"><a href="{{ route('ads.index', ['category' => 'autoritarismo']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Autoritarismo</a></button>
+        <button class="btn btn-category" style="background-color: rgb(205, 199, 32);"><a href="{{ route('ads.index', ['category' => 'autoritarismo']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Totalitarismo</a></button>
     </div>
     
     
     <div class="category-buttons d-flex d-md-none overflow-auto">
         <button class="btn btn-category" style="background-color: #FF5733;"><a href="{{ route('ads.index', ['category' => 'espana']) }}" class="category-link" style="background-color: #FF5733; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">España</a></button>
-        <button class="btn btn-category" style="background-color: #33FF57;"><a href="{{ route('ads.index', ['category' => 'inmigracion']) }}" class="category-link" style="background-color: #33FF57; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Fronteras abiertas</a></button>
+        <button class="btn btn-category" style="background-color: #33FF57;"><a href="{{ route('ads.index', ['category' => 'inmigracion']) }}" class="category-link" style="background-color: #33FF57; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Inmigración</a></button>
         <button class="btn btn-category" style="background-color: #FF33C7;"><a href="{{ route('ads.index', ['category' => 'europa']) }}" class="category-link" style="background-color: #FF33C7; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Europa</a></button>
         <button class="btn btn-category" style="background-color: #9b59b6;"><a href="{{ route('ads.index', ['category' => 'internacional']) }}" class="category-link" style="background-color: #9b59b6; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Internacional</a></button>
         <button class="btn btn-category" style="background-color: blue;"><a href="{{ route('ads.index', ['category' => 'politica']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Política</a></button>
         <button class="btn btn-category" style="background-color: rgb(255, 98, 0);"><a href="{{ route('ads.index', ['category' => 'agenda2030']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Agenda2030</a></button>
         <button class="btn btn-category" style="background-color:rgb(74, 149, 156);;"><a href="{{ route('ads.index', ['category' => 'lgtbiq+']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">LGTBIQ+</a></button>
         <button class="btn btn-category" style="background-color: rgb(255, 0, 47);"><a href="{{ route('ads.index', ['category' => 'corrupcion']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Corrupción</a></button>
-        <button class="btn btn-category" style="background-color: rgb(205, 199, 32);"><a href="{{ route('ads.index', ['category' => 'autoritarismo']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Autoritarismo</a></button>
+        <button class="btn btn-category" style="background-color: rgb(205, 199, 32);"><a href="{{ route('ads.index', ['category' => 'autoritarismo']) }}" class="category-link" style="background-color: #your-color; text-decoration: none; color: white; padding: 1px; box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);">Totalitarismos</a></button>
     </div>
     
     <div class="container-outer" >
@@ -54,13 +54,13 @@
                 </h1>
                 <div class="search-form" style="display: flex; justify-content: center; margin-bottom: 5px;">
                     <form action="{{ route('ads.index') }}" method="GET">
-                        <input type="text" name="search" placeholder="Buscar anuncios...">
+                        <input type="text" name="search" placeholder="Buscar publicación..">
                         <button type="submit">Buscar</button>
                     </form>
                 </div>
                 <div class="card ad-container">
                     <!-- ... Resto del contenido ... -->
-                    <div class="card-body bgcolor" style="padding: 10px;">
+                    <div class="card-body bgcolor" style="padding: 0px;">
                         <!-- ... Resto del contenido ... -->
                         <div class="card-body" style="text-align: center; ">
                             <div class="row bgcolor" style="padding-top: 10px;"  >
@@ -87,11 +87,10 @@
                                                 @endif
                                             
                                                 @if (!$ad->video_url && $ad->image)
-                                                    <div class="carousel-item active"> <!-- Cambia "active" a "carousel-item" -->
-                                                        <img src="{{ $ad->getImageUrl() }}" alt="{{ $ad->image }}" class="img-fluid ad-image mb-3" style="max-height: 500; width: 100%;">
-                                                    </div>
-                                                @endif
-        
+                                                <div class="carousel-item active" style="display: flex; justify-content: center; align-items: center;"> <!-- Cambia "active" a "carousel-item" -->
+                                                    <img src="{{ $ad->getImageUrl() }}" alt="{{ $ad->image }}" class="img-fluid ad-image mb-3" style="max-height: 500px; width: 100%;">
+                                                </div>
+                                            @endif
                                                 @foreach ($ad->relatedImages as $relatedImage)
                                                 <div class="carousel-item">
                                                     <div class="d-flex justify-content-center align-items-center">
@@ -145,10 +144,23 @@
                 </div>
             </div>
         </div>
+
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center pagination-custom"> <!-- Agrega la clase "pagination-custom" -->
+                {{ $ads->links() }} <!-- Mostrará los enlaces de paginación -->
+            </ul>
+        </nav>
+        
     </div>
+
+
+
+
+
     <aside class="sidebar">
                 <div class="latest-news">
-                    <h2 style=";border-radius:10px;margin-top:2px;margin-bottom: 6px;width: 97%; background-color: rgb(16, 239, 235); display:flex;  justify-content: center;"><b>DESTACADO</b></h2>
+                    <h2 style=";border-radius:10px;margin-top:0px;margin-bottom: 0px;width: 90%; background-color: rgb(16, 239, 235); display:flex;  justify-content: center;"><b>DESTACADO</b></h2>
                     @foreach ($latestAds as $ad)
                         <div class="news-item">
                             <a href="{{ route('ads.show', ['id' => $ad->id]) }}">

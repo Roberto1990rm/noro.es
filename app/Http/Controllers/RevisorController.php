@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Ad;
-
+use Illuminate\Pagination\Paginator;
 class RevisorController extends Controller
 {
     public function index()
-    {
-        $ads = Ad::all();
-        return view('revisor', compact('ads'));
-    }
+{
+    paginator::useBootstrapFive();
+    $ads = Ad::paginate(15); // Obtener los anuncios paginados en grupos de 15
+    return view('revisor', compact('ads'));
+}
+
     public function updateVisibility(Request $request, $id)
     {
         $ad = Ad::findOrFail($id);

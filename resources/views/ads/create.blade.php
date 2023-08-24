@@ -88,6 +88,11 @@
                                 </div>
                                 <button type="button" class="btn btn-secondary mt-2" id="add-related-image">{{ __('Add Another Image') }}</button>
                             </div>
+
+                            <div class="form-group">
+                                <label for="hashtags">Hashtags (separados por comas):</label>
+                                <input type="text" class="form-control" id="hashtags" name="hashtags" placeholder="Ejemplo: política, internacional, noticias">
+                            </div>
                             
                             <div class="form-group">
                                 @if(Auth::check() && Auth::user()->is_revisor == 1)

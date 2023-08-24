@@ -9,6 +9,9 @@
                         <th>Subtitle</th>
                         <th>Content</th>
                         <th>Image</th>
+                        <th>Hashtags</th>
+                        <th>Related Images</th>
+                        <th>Video</th>
                         <th>Published</th>
                         <th>Actions</th>
                     </tr>
@@ -26,7 +29,37 @@
                                 No Image
                             @endif
                         </td>
+                        <td>
+                            @if ($ad->hashtags)
+                                @foreach ($ad->hashtags as $hashtag)
+                                    {{ $hashtag->tag }}
+                                @endforeach
+                            @endif
+                        </td>
+                        
+                     
+                      
+                        <td>
+                            @foreach ($ad->relatedImages as $image)
+                            <img src="{{ asset('storage/' . $image->image_path) }}" alt="Related Image" style="max-height: 100px; width: 40px;">
+                        @endforeach
+                        
+                        </td>
+                        <td>
+                            @if ($ad->video_url)
+                         <div class="carousel-item active">
+    <div class="embed-responsive embed-responsive-1by1" style="width: 100px; height: 100px;">
+        <div class="responsive-video embed-responsive-item">
+            {!! $ad->video_url !!}
+        </div>
+    </div>
+</div>
+
+                            
+                        @endif
+                        </td>
                         <td>{{ $ad->created_at }}</td>
+                        <td>
                         <td>
                             <form action="{{ route('revisor.update-visibility', ['id' => $ad->id]) }}" method="post">
                                 @csrf
@@ -40,7 +73,9 @@
                                 @csrf
                                 @method('delete')
                                 <button type="submit" class="btn btn-danger">Delete</button>
+                                
                             </form>
+                            <a href="{{ route('ads.edit', ['id' => $ad->id]) }}" class="btn btn-primary">Edit</a>
                         </td>
                     </tr>
                     @endforeach

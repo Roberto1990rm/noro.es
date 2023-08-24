@@ -64,5 +64,12 @@ public function relatedImages()
 }
 
 
+// app/Models/Ad.php
+
+public function hashtags()
+{
+    return $this->hasMany(Hashtag::class, 'ad_id');
+}
+
 
 }

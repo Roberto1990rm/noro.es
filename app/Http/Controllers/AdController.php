@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Comment;
 use App\Models\RelatedImage;
+use App\Models\Hashtag;
 use Illuminate\Pagination\Paginator;
 
 class AdController extends Controller
@@ -26,7 +27,8 @@ class AdController extends Controller
             'category' => 'required|in:espana,internacional,politica,agenda2030,lgtbiq+,corrupcion,autoritarismo,alarmismo,inmigracion,europa',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'video_url' => 'nullable',
-            'related_images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Add validation for related images
+            'related_images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'hashtags' => 'nullable|string', // Agrega validación para los hashtags
         ]);
     
         $validatedData['is_visible'] = 0;
@@ -42,10 +44,23 @@ class AdController extends Controller
             $ad->video_url = $request->input('video_url');
         }
     
-        // Asociar el ID del usuario actual al anuncio
+        // Asignar el ID del usuario actual al anuncio
         $ad->user_id = auth()->user()->id;
     
         $ad->save();
+    
+        // Procesar los hashtags
+        $inputHashtags = $request->input('hashtags', []);
+        if (!empty($inputHashtags)) {
+            $hashtags = explode(',', $inputHashtags);
+            foreach ($hashtags as $tag) {
+                $tag = trim($tag);
+                if ($tag !== '') {
+                    $hashtag = new Hashtag(['tag' => $tag]);
+                    $ad->hashtags()->save($hashtag);
+                }
+            }
+        }
     
         $relatedImagePaths = [];
     
@@ -68,37 +83,51 @@ class AdController extends Controller
         return redirect()->route('ads.create')->with('success', 'Ad created successfully.');
     }
     
+    
 
-    public function index(Request $request)
+
+public function index(Request $request)
 {
-    paginator::useBootstrapFive();
+    Paginator::useBootstrapFive(); // Corregido el uso de useBootstrapFive
+
     $latestAds1 = Ad::orderBy('created_at', 'desc')->take(7)->get();
     $latestAds = Ad::orderBy('likes_count', 'desc')->take(7)->get();
     $adsQuery = Ad::query();
     $selectedCategory = $request->input('category');
     $category = $request->input('category');
-    $searchTerm = $request->input('search'); // Obtener el término de búsqueda
-    $query = Ad::query();
+    $searchTerm = $request->input('search');
+    $hashtag = $request->input('hashtag'); // Obtener el hashtag de la solicitud
 
-  if ($category) {
-    $adsQuery->where('category', $category);
-}
+    if ($category) {
+        $adsQuery->where('category', $category);
+    }
 
-if ($searchTerm) {
-    $adsQuery->where(function ($q) use ($searchTerm) {
-        $q->where('category', 'like', '%' . $searchTerm . '%')
-          ->orWhere('content', 'like', '%' . $searchTerm . '%')
-          ->orWhere('created_at', 'like', '%' . $searchTerm . '%')
-          ->orWhere('title', 'like', '%' . $searchTerm . '%')
-          ->orWhere('subtitle', 'like', '%' . $searchTerm . '%')
-          ->orWhere('video_url', 'like', '%' . $searchTerm . '%');
-    });
-}
+    if ($searchTerm) {
+        $adsQuery->where(function ($q) use ($searchTerm) {
+            $q->where('category', 'like', '%' . $searchTerm . '%')
+                ->orWhere('content', 'like', '%' . $searchTerm . '%')
+                ->orWhere('created_at', 'like', '%' . $searchTerm . '%')
+                ->orWhere('title', 'like', '%' . $searchTerm . '%')
+                ->orWhere('subtitle', 'like', '%' . $searchTerm . '%')
+                ->orWhere('video_url', 'like', '%' . $searchTerm . '%')
+                ->orWhereHas('hashtags', function ($q) use ($searchTerm) {
+                    $q->where('tag', 'like', '%' . $searchTerm . '%');
+                });
+        });
+    }
 
-$ads = $adsQuery->orderBy('created_at', 'desc')
-    ->paginate(10); // Aquí puedes establecer el número de elementos por página
+    if ($hashtag) {
+        $adsQuery->whereHas('hashtags', function ($q) use ($hashtag) {
+            $q->where('tag', $hashtag);
+        });
+    }
 
-return view('ads.index', compact('ads', 'selectedCategory', 'latestAds', 'latestAds1'));
+    $adsQuery->where('is_visible', 1);
+
+    $ads = $adsQuery->orderBy('created_at', 'desc')
+        ->paginate(10);
+
+    return view('ads.index', compact('ads', 'selectedCategory', 'latestAds', 'latestAds1'));
 }
 
     
@@ -124,7 +153,9 @@ public function edit($id)
         return redirect()->route('ads.index')->with('error', 'You do not have permission to edit this ad.');
     }
 
-    return view('ads.edit', compact('ad'));
+    $hashtags = $ad->hashtags; // Obtén los hashtags asociados al anuncio
+
+    return view('ads.edit', compact('ad', 'hashtags'));
 }
 
 
@@ -140,13 +171,50 @@ public function update(Request $request, $id)
     // Valida los datos del formulario de edición
     $validatedData = $request->validate([
         'title' => 'required|string|max:255',
+        'video_url' => 'nullable',
         'subtitle' => 'nullable|string|max:255',
         'content' => 'required|string',
-        'category' => 'required|in:nacional,internacional,politica,economia,tecnologia,moda,cultura,entretenimiento,ciencia,motor',
+        'category' => 'required|in:españa,europa,internacional,politica,inmigracion,agenda2030,LGTBIQ+,corrupcion,autoritarismo',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'related_images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'hashtags' => 'nullable|string',
     ]);
 
     // Actualiza los campos del anuncio con los datos validados
     $ad->update($validatedData);
+
+    // Actualiza la imagen si se proporcionó una nueva
+    if ($request->hasFile('image')) {
+        $imagePath = $request->file('image')->store('ad_images', 'public');
+        $ad->image = $imagePath;
+        $ad->save();
+    }
+
+    // Actualiza las imágenes relacionadas si se proporcionaron nuevas
+    if ($request->hasFile('related_images')) {
+        foreach ($request->file('related_images') as $relatedImage) {
+            $imagePath = $relatedImage->store('related_images', 'public');
+            $relatedImageModel = new RelatedImage([
+                'image_path' => $imagePath,
+                'ad_id' => $ad->id,
+            ]);
+            $relatedImageModel->save();
+        }
+    }
+
+    // Actualiza los hashtags
+    $inputHashtags = $request->input('hashtags', []);
+    if (!empty($inputHashtags)) {
+        $ad->hashtags()->delete(); // Elimina los hashtags actuales
+        $hashtags = explode(',', $inputHashtags);
+        foreach ($hashtags as $tag) {
+            $tag = trim($tag);
+            if ($tag !== '') {
+                $hashtag = new Hashtag(['tag' => $tag]);
+                $ad->hashtags()->save($hashtag);
+            }
+        }
+    }
 
     // Establece el valor de is_visible en 0
     $ad->is_visible = 0;
@@ -154,6 +222,8 @@ public function update(Request $request, $id)
 
     return redirect()->route('ads.index')->with('success', 'Ad updated successfully.');
 }
+
+
 
 
 public function showMyAds(Request $request)

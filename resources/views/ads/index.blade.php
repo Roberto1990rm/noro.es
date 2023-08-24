@@ -120,6 +120,16 @@
                                             @if (Auth::check() && Auth::user()->id === $ad->user_id)
                                                 <a href="{{ route('ads.edit', ['id' => $ad->id]) }}" class="btn btn-primary">Edit Ad</a>
                                             @endif
+
+<div class="mb-3">
+    <label for="hashtags" class="form-label">Hashtags</label>
+    @foreach ($ad->hashtags as $hashtag)
+        <a href="{{ route('ads.index', ['hashtag' => $hashtag->tag, 'category' => request('category'), 'search' => request('search')]) }}" class="btn btn-link">#{{ $hashtag->tag }}</a> <!-- Agregado "#" delante de la variable del hashtag -->
+    @endforeach
+
+
+   
+</div>
                                             <div class="d-flex justify-content-between align-items-center mt-3">
                                                 @auth
                                                     <form class="like-form" action="{{ route('ads.like', ['id' => $ad->id]) }}" method="POST">
@@ -160,7 +170,9 @@
 
     <aside class="sidebar">
                 <div class="latest-news">
-                    <h2 style=";border-radius:10px;margin-top:0px;margin-bottom: 0px;width: 90%; background-color: rgb(16, 239, 235); display:flex;  justify-content: center;"><b>DESTACADO</b></h2>
+                    <div style="background-color:  #ff00c3; width: 100%;" >
+                        <H1 style="margin-top: 10px; font-size: 18px; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">Favoritos</H1>
+                        </div>
                     @foreach ($latestAds as $ad)
                         <div class="news-item">
                             <a href="{{ route('ads.show', ['id' => $ad->id]) }}">
@@ -286,7 +298,7 @@
         display: flex;
         justify-content: center;
         align-items: flex-start; /* Alinear el contenido arriba */
-        margin-left: 50px;
+        margin-left: 10px;
     }
 
     .container-inner {
@@ -313,9 +325,10 @@
     .sidebar {
     display: flex;
     flex-direction: column;
-    width: 36%;
+    width: 32%;
     height: 100%;
     border-radius: 10px;
+    margin-left: 10PX;
 }
 
 

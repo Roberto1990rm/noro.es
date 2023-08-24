@@ -13,16 +13,18 @@
             @endforeach
         </ul>
     </div>
-    <div class="info-strip" style="background-color: black; height: 40px; padding-top:10px;">
-    <marquee behavior="scroll" direction="right" scrollamount="5">
-        @php
-            $colors = ['#FF5733', '#33FF57', '#FFFFFF', '#FF33C7'];
-        @endphp
-        @foreach ($colors as $color)
-            <span class="info-text" style="color: {{ $color }};">Bienvenidos a Noro News</span>
-        @endforeach
-    </marquee>
-</div>
+    <div class="info-strip" style="background-color: black; height: 40px; padding-top: 10px;">
+        <marquee behavior="scroll" direction="right" scrollamount="5">
+            @php
+                $colors = ['#FF5733', '#33FF57', '#FFFFFF', '#FF33C7'];
+                $currentDate = now()->format('d/m/Y'); // Obtiene la fecha actual en formato "dd/mm/yyyy"
+            @endphp
+            @foreach ($colors as $color)
+                <span class="info-text" style="color: {{ $color }};">Bienvenidos a Noro News - {{ $currentDate }}</span>
+            @endforeach
+        </marquee>
+    </div>
+    
 
 
 <div class="container-outer">

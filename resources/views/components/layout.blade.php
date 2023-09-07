@@ -7,12 +7,11 @@
     <link href="{{ asset('css/cardAds.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="{{ asset('js/a.js') }}"></script>
     <link href="{{ asset('css/globalstyles.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
  
-  </head>
+  </head> 
   <body>
   
     

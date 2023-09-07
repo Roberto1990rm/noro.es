@@ -39,8 +39,7 @@ Route::post('/ads/{id}/like', [AdController::class, 'likeAd'])->name('ads.like')
 Route::post('/ads/{id}/comments', [AdController::class, 'storeComment'])->name('ads.comments.store');
 Route::delete('/ads/{ad_id}/comments/{comment_id}', [AdController::class, 'destroyComment'])->name('ads.comments.destroy');
 // routes/web.php
-Route::get('revisor', [RevisorController::class, 'index'])->name('revisor.index');
-Route::post('/revisor/update-visibility/{id}', [RevisorController::class, 'updateVisibility'])->name('revisor.update-visibility');
+
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('users', [AdminController::class, 'index'])->name('admin.users.index');
@@ -50,7 +49,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 });
 
 Route::middleware(['auth', 'revisor'])->prefix('revisor')->group(function () {
-
+    Route::get('revisor', [RevisorController::class, 'index'])->name('revisor.index');
+    Route::post('/revisor/update-visibility/{id}', [RevisorController::class, 'updateVisibility'])->name('revisor.update-visibility');
 
 });
 

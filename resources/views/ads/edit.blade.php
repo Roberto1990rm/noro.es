@@ -20,8 +20,7 @@
                 <textarea class="form-control" id="content" name="content">{{ $ad->content }}</textarea>
             </div>
 
-            <div class="mb-3">
-                <label for="category" class="form-label">Category</label>
+            
                 <div class="mb-3">
                     <label for="category" class="form-label">Category</label>
                     <div class="form-group">

@@ -233,7 +233,7 @@
 </div>
 
             <div style="background-color:  #ff00fb">
-            <H1 style="margin-top: 10px; font-size: 18px; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">Publicidad</H1>
+            <H1 style="margin-top: 10px; font-size: 18px; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">Otros</H1>
             </div>
             <div class="latest-news">
                 @foreach ($latestAds as $ad)

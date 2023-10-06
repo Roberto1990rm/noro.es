@@ -10,7 +10,7 @@
     <script src="{{ asset('js/a.js') }}"></script>
     <link href="{{ asset('css/globalstyles.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
- 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head> 
   <body>
   

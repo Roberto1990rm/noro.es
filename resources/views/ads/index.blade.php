@@ -274,7 +274,7 @@
                             </button>
                         </div>
                         
-                        <p style="font-size: 11px; color: white; width:82%; margin-left:17px; ">{{ $ad->title }}</p>
+                        <p style="font-size: 10px; color: white; width:82%; margin-left:17px; ">{{ $ad->title }}</p>
                     </a>
                 </div>
                 @endforeach

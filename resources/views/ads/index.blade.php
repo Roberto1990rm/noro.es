@@ -177,7 +177,7 @@
                                         @if ($ad->video_url)
                                             <div class="carousel-item active">
                                                 <div class="embed-responsive embed-responsive-16by9">
-                                                    <div class="responsive-video">
+                                                    <div class="responsive-video" style="width: 82%">
                                                         {!! $ad->video_url !!}
                                                     </div>
                                                 </div>
@@ -192,7 +192,7 @@
                                 
                                         @foreach ($ad->relatedImages as $relatedImage)
                                             <div class="carousel-item">
-                                                <img src="{{ asset('storage/' . $relatedImage->image_path) }}" alt="{{ $ad->title }}" class="img-fluid ad-image mb-3" style="max-height: 200px; width: 80%;">
+                                                <img src="{{ asset('storage/' . $relatedImage->image_path) }}" alt="{{ $ad->title }}" class="img-fluid ad-image mb-3" style="max-height: 200px; width: 82%;">
                                             </div>
                                         @endforeach
                                     </div>
@@ -244,7 +244,7 @@
                                 @if ($ad->video_url)
                                     <div class="carousel-item active">
                                         <div class="embed-responsive embed-responsive-16by9">
-                                            <div class="responsive-video">
+                                            <div class="responsive-video" style="width: 80%;">
                                                 {!! $ad->video_url !!}
                                             </div>
                                         </div>

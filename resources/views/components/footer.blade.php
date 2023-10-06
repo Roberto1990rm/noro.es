@@ -3,12 +3,12 @@
         <div class="row">
             <div class="col-md-4">
                 <h4>Sobre Noro News</h4>
-                <p>Esta plataforma nace para dar voz a temas marginados por la corrupción mediática y política, buscando destacar lo subyacente y relevante que a menudo se pasa por alto.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo repudiandae quaerat laboriosam id quis corporis sed officiis quasi beatae itaque temporibus dicta ad iste in, nulla earum deleniti sit impedit.</p>
             </div>
          
             <div class="col-md-4">
                 <h4>Contacta con nosotros</h4>
-                <p>Email: beanroka@gmail.com</p>
+                <p>Email: noro@news.com</p>
             </div>
         </div>
         <div class="row">

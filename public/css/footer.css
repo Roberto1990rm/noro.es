@@ -1,7 +1,10 @@
-.footer {
-    background-color: #333;
-    color: #363434;
-    padding: 50px 0;
+footer {
+    bottom: 0;
+    left: 0;
+    background-color: #333; /* Cambia el color de fondo según tus preferencias */
+    color: #fff; /* Cambia el color de texto según tus preferencias */
+    padding: 10px; /* Añade relleno para que el contenido sea visible */
+    text-align: center; /* Centra el texto dentro del pie de página */
 }
 .footer h4 {
     color: #ffc107;

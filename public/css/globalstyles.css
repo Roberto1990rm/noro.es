@@ -44,7 +44,6 @@ h1 {
   letter-spacing: 2px;
   text-shadow: 1px 1px 2px rgb(212, 206, 206); /* Sombra 3D */
   background: linear-gradient(45deg, #000000, #000000); /* Degradado de fondo */
-  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -118,7 +117,7 @@ h1 {
 }
 
 body {
-    background: linear-gradient(135deg, #FFFFCC 0%, #FFCC99 50%, #FFFFCC 100%);
+    background: linear-gradient(135deg, #f9f9cb 0%, #FFCC99 50%, #FFFFCC 100%);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;

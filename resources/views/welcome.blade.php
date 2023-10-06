@@ -134,8 +134,7 @@
             @php
                 $carouselImages = [
                     '4.jpg',
-                    '1.jpg',
-                    '2.jpg',
+                   
                 ];
             @endphp
             @foreach ($carouselImages as $index => $image)

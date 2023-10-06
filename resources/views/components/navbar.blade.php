@@ -9,8 +9,6 @@
             </a>
         </li>
         @guest
-          
-        
       
           @endguest
           <li class="list" >

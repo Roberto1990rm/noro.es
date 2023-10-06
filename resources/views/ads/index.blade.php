@@ -186,13 +186,13 @@
                                 
                                         @if ($ad->image)
                                             <div class="carousel-item {{ $ad->video_url ? '' : 'active' }}">
-                                                <img src="{{ $ad->getImageUrl() }}" alt="{{ $ad->title }}" class="img-fluid ad-image mb-3" style="max-height: 200px; width: 100%;">
+                                                <img src="{{ $ad->getImageUrl() }}" alt="{{ $ad->title }}" class="img-fluid ad-image mb-3" style="max-height: 200px; width: 80%;">
                                             </div>
                                         @endif
                                 
                                         @foreach ($ad->relatedImages as $relatedImage)
                                             <div class="carousel-item">
-                                                <img src="{{ asset('storage/' . $relatedImage->image_path) }}" alt="{{ $ad->title }}" class="img-fluid ad-image mb-3" style="max-height: 200px; width: 100%;">
+                                                <img src="{{ asset('storage/' . $relatedImage->image_path) }}" alt="{{ $ad->title }}" class="img-fluid ad-image mb-3" style="max-height: 200px; width: 80%;">
                                             </div>
                                         @endforeach
                                     </div>
@@ -207,7 +207,7 @@
                                     </button>
                                 </div>
                                 
-                                <p style="font-size: 10px; color: white; ">{{ $ad->title }}</p>
+                                <p style="font-size: 10px; color: white;  width: 82%; margin-left: 17px;">{{ $ad->title }}</p>
                             </a>
                         </div>
                     @endforeach
@@ -253,13 +253,13 @@
                         
                                 @if ($ad->image)
                                     <div class="carousel-item {{ $ad->video_url ? '' : 'active' }}">
-                                        <img src="{{ $ad->getImageUrl() }}" alt="{{ $ad->title }}" class="img-fluid ad-image mb-3" style="max-height: 200px; width: 100%;">
+                                        <img src="{{ $ad->getImageUrl() }}" alt="{{ $ad->title }}" class="img-fluid ad-image mb-3" style="max-height: 200px; width: 80%;">
                                     </div>
                                 @endif
                         
                                 @foreach ($ad->relatedImages as $relatedImage)
                                     <div class="carousel-item">
-                                        <img src="{{ asset('storage/' . $relatedImage->image_path) }}" alt="{{ $ad->title }}" class="img-fluid ad-image mb-3" style="max-height: 200px; width: 100%;">
+                                        <img src="{{ asset('storage/' . $relatedImage->image_path) }}" alt="{{ $ad->title }}" class="img-fluid ad-image mb-3" style="max-height: 200px; width: 80%;">
                                     </div>
                                 @endforeach
                             </div>
@@ -274,7 +274,7 @@
                             </button>
                         </div>
                         
-                        <p style="font-size: 10px; color: white; ">{{ $ad->title }}</p>
+                        <p style="font-size: 10px; color: white; width:82%; margin-left:17px; ">{{ $ad->title }}</p>
                     </a>
                 </div>
                 @endforeach

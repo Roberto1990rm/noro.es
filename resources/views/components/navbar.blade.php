@@ -11,14 +11,7 @@
         @guest
           
         
-          <li class="list">
-            <a href="/" style="color: black;">
-              <span class="text">Home</span>
-              <span class="icon">
-                <img src="https://res.cloudinary.com/dhvkfxxvo/image/upload/v1687763208/accueil_cpyvmd.svg" alt="icone accueil" />
-              </span>
-            </a>
-          </li>
+      
           @endguest
           <li class="list" >
             <a href="/ads" style="color: black;">
